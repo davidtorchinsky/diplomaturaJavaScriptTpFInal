@@ -2,14 +2,13 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
-// Equema Comentario se hace asi o como? lo sacamos a un model aparte para poder hacer coment de coment
-var Comentario = new Schema({
-    autor: _idUsuario, // puede ser tambien el usuario embebido
+/* var ComentarioSchema = new Schema({
+    autor: String, // puede ser tambien el usuario embebido
     numero: Number,
     coment: String,
     fecha: Date,
     comentarios: [Comentario],
-});
+}); */
 
 var PostSchema = Schema({
     numero: {
@@ -17,14 +16,20 @@ var PostSchema = Schema({
         unique: true,
     },
     //Ver la verificacion con usuario
-    upvotes: [Usuario],
-    downvotes: [Usuario],
+    upvotes: [usuario], //guardo el Usuario
+    downvotes: [usuario],
     fecha: Date,
-    meme: url,
+    memeUrl: String,
     titulo: String,
     categoria: [Categoria],
 
-    comentarios: [Comentario],
+    comentarios: [comentario],
+
+    //Relacion con Comentario
+    comentariio: [{
+        type: Schema.Types.ObjectId,
+        ref: "Comentario",
+    }, ],
 
     //Relacion con Usuario
     usuario: [{
@@ -34,3 +39,4 @@ var PostSchema = Schema({
 });
 
 var Post = mongoose.model("Post", PostSchema);
+module.exports = Post;

@@ -11,12 +11,18 @@ var UsuarioSchema = Schema({
     password: String,
 
     //ver esta parte
-    logo: url,
+    logoUrl: String,
 
     //Relacion con Post
     post: [{
         type: Schema.Types.ObjectId,
         ref: "Post",
+    }, ],
+
+    //Relacion con comentarios
+    comentarios: [{
+        type: Schema.Types.ObjectId,
+        ref: "Comentario",
     }, ],
 });
 var Usuario = mongoose.model("Usuario", UsuarioSchema);
