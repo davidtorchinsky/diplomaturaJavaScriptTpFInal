@@ -1,7 +1,6 @@
 import express from "express";
-import cor from "cors";
+import cors from "cors";
 
-const cors = cor;
 const app = express();
 
 //settings

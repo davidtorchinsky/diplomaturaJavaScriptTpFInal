@@ -65,25 +65,25 @@ function getComentariosUsuarios(req, res) {
 function cargarComentario(req, res) {
     if (!req.body.autor) {
         return res.status(400).json({
-            title: "Error no hay usuario",
+            title: "Error bad request",
             error: err,
         });
     }
     if (!req.body.numero) {
         return res.status(400).json({
-            title: "Error",
+            title: "Error bad request",
             error: err,
         });
     }
     if (!req.body.coment) {
         return res.status(400).json({
-            title: "Error",
+            title: "Error bad request",
             error: err,
         });
     }
     if (!req.body.fecha) {
         return res.status(400).json({
-            title: "Error",
+            title: "Error bad request",
             error: err,
         });
     }
@@ -107,25 +107,25 @@ function cargarComentario(req, res) {
 function responderComentario(req, res) {
     if (!req.body.autor) {
         return res.status(400).json({
-            title: "Error no hay usuario",
+            title: "Error bad request",
             error: err,
         });
     }
     if (!req.body.numero) {
         return res.status(400).json({
-            title: "Error",
+            title: "Error bad request",
             error: err,
         });
     }
     if (!req.body.coment) {
         return res.status(400).json({
-            title: "Error",
+            title: "Error bad request",
             error: err,
         });
     }
     if (!req.body.fecha) {
         return res.status(400).json({
-            title: "Error",
+            title: "Error bad request",
             error: err,
         });
     }
