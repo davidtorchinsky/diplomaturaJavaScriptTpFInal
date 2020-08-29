@@ -10,18 +10,18 @@ var Schema = mongoose.Schema;
     comentarios: [Comentario],
 }); */
 
-var PostSchema = Schema({
+var MemeSchema = Schema({
     numero: {
         type: Number,
         unique: true,
     },
     //Ver la verificacion con usuario
-    upvotes: [usuario], //guardo el Usuario
-    downvotes: [usuario],
+    upvotes: [String], //guardo el Usuario
+    downvotes: [String],
     fecha: Date,
     memeUrl: String,
     titulo: String,
-    categoria: [Categoria],
+    categoria: [Categoria], //String
 
     comentarios: [comentario],
 
@@ -38,5 +38,5 @@ var PostSchema = Schema({
     }, ],
 });
 
-var Post = mongoose.model("Post", PostSchema);
-module.exports = Post;
+var Meme = mongoose.model("Meme", MemeSchema);
+module.exports = Meme;

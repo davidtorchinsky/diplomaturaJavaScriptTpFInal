@@ -1,10 +1,7 @@
 "use strict";
 
-import { Comenta } from "../Models/comentario";
-import { Usu } from "../Models/usuario";
-
-var Comentario = Comenta;
-var Usuario = Usu;
+import Comentario from "../Models/comentario";
+import Usuario from "../Models/usuario";
 
 function getComentarios(req, res) {
     Comentario.find({}, function(err, comentarios) {
@@ -95,7 +92,8 @@ function cargarComentario(req, res) {
         telefono: req.body.fecha,
         comentarios: [],
     });
-
+    //falta hacer la union con el post
+    //falta unir con el usuario
     nuevoComentario.save().then(function(nuevoComentario) {
         res.status(201).json({
             message: "Comentario creado",

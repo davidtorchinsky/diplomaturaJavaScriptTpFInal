@@ -14,13 +14,3 @@ const connection = mongoose.connection;
 connection.once("open", () => {
     console.log("DB conected");
 });
-
-/* const URI = "mongodb://localhost/11gag";
-mongoose.connect(URI, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-});
-const connection = mongoose.connection;
-connection.once("open", () => {
-    console.log("DB conected");
-}); */

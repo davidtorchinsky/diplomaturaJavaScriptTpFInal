@@ -7,11 +7,12 @@ import UsuarioController from "../controllers/usuario";
 // GETS
 api.get("/", UsuarioController.getUsuarios);
 api.get("/:emailUsuario", UsuarioController.getUsuario);
-api.get("/login:", UsuarioController.getLogin);
-api.get("/logout", UsuarioController.getLogout);
+api.get("/:login", UsuarioController.getLogin);
+api.get("/:logout", UsuarioController.getLogout);
 
 // PATCH o PUT
-api.patch("/:emailUsuario", UsuarioController.editarUsuario);
+api.put("/:emailUsuario", UsuarioController.editarUsuario);
+api.patch("/asignarMeme/:emailUsuario", UsuarioController.asignarMeme);
 
 // POST
 api.post("/", UsuarioController.cargarUsuario);

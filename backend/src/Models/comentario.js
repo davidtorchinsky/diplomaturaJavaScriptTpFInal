@@ -9,6 +9,7 @@ var ComentarioSchema = new Schema({
     coment: String,
     fecha: Date,
     comentarios: [Comentario],
+    idPost: String,
 });
 var Comentario = mongoose.model("Comentario", ComentarioSchema);
 
