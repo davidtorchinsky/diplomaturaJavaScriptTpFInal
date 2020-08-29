@@ -1,7 +1,7 @@
 "use strict";
 
 import Usuario from "../Models/usuario";
-import meme from "../Models/meme";
+import Meme from "../Models/meme";
 
 function getUsuarios(req, res) {
     Usuario.find({}, function(err, usuarios) {
@@ -69,7 +69,7 @@ function asignarMeme(req, res) {
             usuario.save().then(
                 function(usuario) {
                     //Asocio el usuario al meme
-                    meme.find({ _id: { $in: req.body.idMeme } }, async function(
+                    Meme.find({ _id: { $in: req.body.idMeme } }, async function(
                         err,
                         memes
                     ) {

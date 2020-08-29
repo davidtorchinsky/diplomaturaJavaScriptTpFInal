@@ -13,10 +13,10 @@ var UsuarioSchema = Schema({
     //ver esta parte
     logoUrl: String,
 
-    //Relacion con Post
-    post: [{
+    //Relacion con Meme
+    meme: [{
         type: Schema.Types.ObjectId,
-        ref: "Post",
+        ref: "Meme",
     }, ],
 
     //Relacion con comentarios
