@@ -147,10 +147,10 @@ function cargarUsuario(req, res) {
 module.exports = {
     getUsuarios,
     getUsuario,
-    getLogin,
-    getLogout,
-    editarUsuario,
+    //getLogin,
+    //getLogout,
+    //editarUsuario,
     asignarMeme,
     cargarUsuario,
-    eliminarUsuario,
+    //eliminarUsuario,
 };

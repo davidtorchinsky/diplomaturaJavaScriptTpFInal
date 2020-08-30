@@ -22,3 +22,7 @@ function getMemes(req, res) {
         });
     });
 }
+// EXPORT
+module.exports = {
+    getMemes,
+};

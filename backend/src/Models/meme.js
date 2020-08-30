@@ -21,9 +21,9 @@ var MemeSchema = Schema({
     fecha: Date,
     memeUrl: String,
     titulo: String,
-    categoria: [Categoria], //String
+    categoria: String, //String
 
-    comentarios: [comentario],
+    //comentarios: [comentario],
 
     //Relacion con Comentario
     comentariio: [{

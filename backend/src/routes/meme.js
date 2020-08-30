@@ -5,8 +5,8 @@ const api = express.Router();
 import MemeController from "../controllers/meme";
 
 // GETS
-api.get("/", MemeController.getMeme); //obtengo todos los meme
-api.get("/:idUsuario", MemeController.getMemeUsuario);
+api.get("/", MemeController.getMemes); //obtengo todos los meme
+/* api.get("/:idUsuario", MemeController.getMemeUsuario);
 api.get("/:idMeme", MemeController.getMeme);
 
 // PATCH o PUT
@@ -20,6 +20,6 @@ api.post("/", MemeController.cargarMeme);
 api.post("/cargarComentario/:", MemeController.cargarMeme);
 
 // DELETE
-api.delete("/:idMeme", MemeController.eliminarMeme);
+api.delete("/:idMeme", MemeController.eliminarMeme); */
 
 module.exports = api;

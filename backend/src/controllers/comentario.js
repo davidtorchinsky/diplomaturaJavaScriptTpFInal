@@ -2,6 +2,7 @@
 
 import Comentario from "../Models/comentario";
 import Usuario from "../Models/usuario";
+import Meme from "../Models/meme";
 
 function getComentarios(req, res) {
     Comentario.find({}, function(err, comentarios) {
@@ -92,13 +93,23 @@ function cargarComentario(req, res) {
         telefono: req.body.fecha,
         comentarios: [],
     });
-    //falta hacer la union con el post
-    //falta unir con el usuario
+    //Cargo el comenario en la BD
     nuevoComentario.save().then(function(nuevoComentario) {
         res.status(201).json({
             message: "Comentario creado",
             obj: nuevoComentario,
         });
+    });
+    //Cargo el comentario al meme
+    Meme.findById({ _id: req.params.idMeme }).exec(function(error, meme) {
+        if (error) {
+            return res.status(400).json({
+                title: "Error bad request",
+                error: error,
+            });
+        }
+
+        meme.comentarios.push(nuevoComentario);
     });
 }
 

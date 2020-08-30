@@ -8,8 +8,11 @@ var ComentarioSchema = new Schema({
     numero: Number,
     coment: String,
     fecha: Date,
-    comentarios: [Comentario],
     idPost: String,
+    comentarios: [{
+        type: Schema.Types.ObjectId,
+        ref: "Comentario",
+    }, ],
 });
 var Comentario = mongoose.model("Comentario", ComentarioSchema);
 

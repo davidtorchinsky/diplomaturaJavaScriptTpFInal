@@ -2,12 +2,12 @@
 
 import express from "express";
 const api = express.Router();
-import ComentarioController from "../controller/comentario";
+import ComentarioController from "../controllers/comentario";
 import Comentario from "../Models/comentario";
 
 // GETS
 api.get("/", ComentarioController.getComentarios);
-api.get("/:idUsuario", ComentarioController.getComentariosUsuario);
+//api.get("/:idUsuario", ComentarioController.getComentariosUsuario);
 
 // PATCH o PUT
 

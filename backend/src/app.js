@@ -1,5 +1,8 @@
 import express from "express";
 import cors from "cors";
+import comentarioRoutes from "./routes/comentario";
+import usuarioRoutes from "./routes/usuario";
+import memeRoutes from "./routes/meme";
 
 const app = express();
 
@@ -10,7 +13,9 @@ app.set("port", process.eventNames.PORT || 4000);
 app.use(cors());
 app.use(express.json());
 
+app.use("/comentario", comentarioRoutes);
+app.use("/usuario", usuarioRoutes);
+app.use("/meme", memeRoutes);
 //routes
-app.get("/usuario", (req, res) => res.send("usuario"));
 
 module.exports = app;
