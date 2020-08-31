@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'row',
         padding: '10px',
         justifyContent: 'flex-start',
+        marginLeft: '-1%'
     }
 }));
 

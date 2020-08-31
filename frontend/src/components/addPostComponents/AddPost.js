@@ -12,22 +12,28 @@ const useStyles = makeStyles((theme) => ({
     sectionTitle: {
         textAlign: 'left',
         padding: '4vh 10vw 1vh 3vw',
+        width: '60vw',
+        margin:  '1vh 10vw'
     },
     titleDivider: {
         backgroundColor: 'black',
         border: '1px black solid',
+        width: '60vw',
+        margin:  '0vh 10vw'
     },
     addForm: {
-        width: '80vw',
-        margin: '5vh 5vw',
+        width: '60vw',
+        margin: '5vh 10vw',
         padding: '3% 5%',
         backgroundColor: '#c8dddb',
+
     },
     addFormTitle: {
         backgroundColor: 'white',
     },
     submit: {
-        marginLeft: '50vw',
+        marginLeft: '45vw',
+    
     }
 }));
 
@@ -60,7 +66,7 @@ export const AddPost = ()=> {
                         color="primary"
                         className={classes.submit}
                     >
-                        Subir
+                        Postear
                     </Button>
                 </form>
             </Container>
