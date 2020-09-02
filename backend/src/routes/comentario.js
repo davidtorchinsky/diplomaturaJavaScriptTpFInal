@@ -1,20 +1,20 @@
 "use strict";
 
 import express from "express";
-const api = express.Router();
+const router = express.Router();
 import ComentarioController from "../controllers/comentario";
 import Comentario from "../Models/comentario";
 
 // GETS
-api.get("/", ComentarioController.getComentarios);
-//api.get("/:idUsuario", ComentarioController.getComentariosUsuario);
+router.get("/", ComentarioController.getComentarios);
+//router.get("/:idUsuario", ComentarioController.getComentariosUsuario);
 
 // PATCH o PUT
 
 // POST
-api.post("/", ComentarioController.cargarComentario);
-api.post("/:idComentario", ComentarioController.responderComentario);
+router.post("/", ComentarioController.cargarComentario);
+router.post("/:idComentario", ComentarioController.responderComentario);
 
 // DELETE
 
-module.exports = api;
+module.exports = router;

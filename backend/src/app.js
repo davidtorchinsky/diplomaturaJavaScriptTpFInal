@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+
 import comentarioRoutes from "./routes/comentario";
 import usuarioRoutes from "./routes/usuario";
 import memeRoutes from "./routes/meme";

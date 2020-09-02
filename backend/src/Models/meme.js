@@ -26,7 +26,7 @@ var MemeSchema = Schema({
     //comentarios: [comentario],
 
     //Relacion con Comentario
-    comentariio: [{
+    comentarios: [{
         type: Schema.Types.ObjectId,
         ref: "Comentario",
     }, ],

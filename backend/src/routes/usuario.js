@@ -1,23 +1,25 @@
 "use strict";
 
 import express from "express";
-const api = express.Router();
+const router = express.Router();
 import UsuarioController from "../controllers/usuario";
 
 // GETS
-api.get("/", UsuarioController.getUsuarios);
-api.get("/:emailUsuario", UsuarioController.getUsuario);
-//api.get("/:login", UsuarioController.getLogin);
-//api.get("/:logout", UsuarioController.getLogout);
+
+router.get("/", UsuarioController.getUsuarios);
+router.get("/:emailUsuario", UsuarioController.getUsuario);
+
+//router.get("/:login", UsuarioController.getLogin);
+//router.get("/:logout", UsuarioController.getLogout);
 
 // PATCH o PUT
-//api.put("/:emailUsuario", UsuarioController.editarUsuario);
-api.patch("/asignarMeme/:emailUsuario", UsuarioController.asignarMeme);
+//router.put("/:emailUsuario", UsuarioController.editarUsuario);
+router.patch("/asignarMeme/:emailUsuario", UsuarioController.asignarMeme);
 
 // POST
-api.post("/", UsuarioController.cargarUsuario);
+router.post("/", UsuarioController.cargarUsuario);
 
 // DELETE
-//api.delete("/:emailUsuario", UsuarioController.eliminarUsuario);
+//router.delete("/:emailUsuario", UsuarioController.eliminarUsuario);
 
-module.exports = api;
+module.exports = router;

@@ -4,6 +4,7 @@ import Usuario from "../Models/usuario";
 import Meme from "../Models/meme";
 
 function getUsuarios(req, res) {
+    console.log("entre a get usuarios");
     Usuario.find({}, function(err, usuarios) {
         if (err) {
             return res.status(400).json({
@@ -17,6 +18,7 @@ function getUsuarios(req, res) {
                 error: err,
             });
         }
+
         res.status(200).json({
             message: "Success",
             obj: usuarios,
@@ -110,22 +112,24 @@ function asignarMeme(req, res) {
 }
 
 function cargarUsuario(req, res) {
+    console.log("entre a cargar controller");
+    console.log(req.body);
     if (!req.body.email) {
         return res.status(400).json({
             title: "Error bad request",
-            error: err,
+            error: "No igreseo mail",
         });
     }
     if (!req.body.pasword) {
         return res.status(400).json({
             title: "Error bad request",
-            error: err,
+            error: "No ingreso el pasword",
         });
     }
     if (!req.body.logo) {
         return res.status(400).json({
             title: "Error bad request",
-            error: err,
+            error: "No se cargo el mail",
         });
     }
 
@@ -134,7 +138,7 @@ function cargarUsuario(req, res) {
         password: req.body.password,
         logoUrl: req.body.logo,
     });
-
+    console.log("voy a cargar el usuario");
     nuevoUsuario.save().then(function(nuevoUsuario) {
         res.status(201).json({
             message: "Usuario creado",
@@ -152,5 +156,6 @@ module.exports = {
     //editarUsuario,
     asignarMeme,
     cargarUsuario,
+
     //eliminarUsuario,
 };

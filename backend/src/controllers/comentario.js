@@ -5,6 +5,7 @@ import Usuario from "../Models/usuario";
 import Meme from "../Models/meme";
 
 function getComentarios(req, res) {
+    console.log("entre a get comentarios");
     Comentario.find({}, function(err, comentarios) {
         if (err) {
             return res.status(400).json({
