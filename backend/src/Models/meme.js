@@ -11,10 +11,7 @@ var Schema = mongoose.Schema;
 }); */
 
 var MemeSchema = Schema({
-    numero: {
-        type: Number,
-        unique: true,
-    },
+    numero: Number,
     //Ver la verificacion con usuario
     upvotes: [String], //guardo el Usuario
     downvotes: [String],

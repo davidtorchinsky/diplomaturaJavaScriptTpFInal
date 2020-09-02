@@ -4,7 +4,6 @@ import Usuario from "../Models/usuario";
 import Meme from "../Models/meme";
 
 function getUsuarios(req, res) {
-    console.log("entre a get usuarios");
     Usuario.find({}, function(err, usuarios) {
         if (err) {
             return res.status(400).json({
@@ -27,6 +26,7 @@ function getUsuarios(req, res) {
 }
 
 function getUsuario(req, res) {
+    console.log("entre a buscar un solo usuario");
     Usuario.find({ mail: req.params.emailUsuario }).exec(function(
         error,
         usuario

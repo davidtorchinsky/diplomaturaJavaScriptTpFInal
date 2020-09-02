@@ -8,7 +8,7 @@ import MemeController from "../controllers/meme";
 router.get("/", MemeController.getMemes); //obtengo todos los meme
 router.get("/:idUsuario", MemeController.getMemeUsuario); // obtengo todos los memes de un determinado usuario
 router.get("/:idMeme", MemeController.getMeme);
-router.get("/findByCategoria/:categoria", MemeController.getMemesCategoria);
+router.get("/buscarPorCategoria/:categoria", MemeController.getMemesCategoria);
 
 // PATCH o PUT
 /* router.patch("/", MemeController.editarMeme); */

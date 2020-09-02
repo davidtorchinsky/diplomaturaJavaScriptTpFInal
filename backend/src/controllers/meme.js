@@ -1,7 +1,7 @@
 "use strict";
 
 import Meme from "../Models/meme";
-import CounterMeme from "../Models/counterMeme";
+import Usuario from "../Models/usuario";
 
 function getMemes(req, res) {
     Meme.find({}, function(err, memes) {
@@ -25,39 +25,30 @@ function getMemes(req, res) {
 }
 
 function getMemeUsuario(req, res) {
-    Usuario.findById({ _id: req.params.idUsuario }).exec(function(
-        error,
-        usuario
-    ) {
-        if (error) {
+    console.log("me llega al memeUsuario " + req.params.idUsuario);
+
+    Meme.find({ usuario: req.params.idUsuario }, function(err, memes) {
+        if (err) {
             return res.status(400).json({
                 title: "Error bad request",
-                error: error,
+                error: err,
             });
         }
-        Meme.find({ _id: { $in: usuario.meme } }, function(err, memes) {
-            if (err) {
-                return res.status(400).json({
-                    title: "Error bad request",
-                    error: err,
-                });
-            }
-            if (!memes) {
-                return res.status(404).json({
-                    title: "Error not found",
-                    error: err,
-                });
-            }
-            res.status(200).json({
-                message: "Success",
-                obj: memes,
+        if (!memes) {
+            return res.status(404).json({
+                title: "Error not found",
+                error: err,
             });
+        }
+        res.status(200).json({
+            message: "Success",
+            obj: memes,
         });
     });
 }
 
 function getMeme(req, res) {
-    Meme.find({ _id: req.params.idMeme }, function(err, meme) {
+    Meme.findById(req.params.idMeme, function(err, meme) {
         if (err) {
             return res.status(400).json({
                 title: "Error bad request",
@@ -78,6 +69,7 @@ function getMeme(req, res) {
 }
 
 function getMemesCategoria(req, res) {
+    console.log("entre a categoria con " + req.params);
     Meme.find({ categoria: req.params.categoria }, function(err, memes) {
         if (err) {
             return res.status(400).json({
@@ -162,14 +154,12 @@ function cargarMeme(req, res) {
             error: "No ingreso fecha",
         });
     }
-
     if (!req.body.titulo) {
         return res.status(400).json({
             title: "Error",
             error: "No ingreso titulo",
         });
     }
-
     if (!req.body.categoria) {
         return res.status(400).json({
             title: "Error",
@@ -182,7 +172,6 @@ function cargarMeme(req, res) {
             error: "No ingreso la url del meme",
         });
     }
-
     if (!req.body.idUsuario) {
         return res.status(400).json({
             title: "Error",
@@ -196,7 +185,7 @@ function cargarMeme(req, res) {
             return handleError(err);
         } //handle possible errors
         //and do some other fancy stuff
-        console.log("Cantidad de memes" + count);
+        console.log("Cantidad de memes " + count);
         var num = count + 1;
         var nuevoMeme = new Meme({
             nuemero: num,
@@ -213,112 +202,19 @@ function cargarMeme(req, res) {
 
         nuevoMeme.save().then(
             function(nuevoMeme) {
-                Meme.populate(
-                    nuevoMeme, [{
-                            path: "comentarios",
-                        },
-                        {
-                            path: "usuario",
-                        },
-                    ],
-                    (error, nuevoMemeExpandido) => {
-                        console.log("meme expandido " + nuevoMemeExpandido);
-                        if (error) {
-                            return res.status(400).json({
-                                title: "Error",
-                                error: error,
-                            });
-                        }
-                        if (!nuevoMemeExpandido) {
-                            return res.status(400).json({
-                                title: "Error",
-                                error: "No se pudo expandir el meme",
-                            });
-                        }
-                        res.status(201).json({
-                            message: "Meme creado",
-                            obj: nuevoMemeExpandido,
-                        });
-                    }
-                );
+                res.status(201).json({
+                    message: "Meme creado",
+                    obj: nuevoMeme,
+                });
             },
             function(err) {
-                return res.status(404).json({
-                    title: "Error",
+                return res.status(400).json({
+                    title: "Error al guardar el meme",
                     error: err,
                 });
             }
         );
     });
-
-    /* CounterMeme.findOne({}).exec((error, counterMeme) => {
-                if (error) {
-                    return res.status(400).json({
-                        title: "Error",
-                        error: error,
-                    });
-                }
-                if (!counterMeme) {
-                    return res.status(400).json({
-                        title: "Error",
-                        error: "No encontro contador meme",
-                    });
-                }
-
-                var nuevoMeme = new Meme({
-                    numero: counterMeme.contador,
-                    upVotes: [],
-                    downVotes: [],
-                    fecha: req.body.fechaMeme,
-                    memeUrl: req.body.memeUrl,
-                    titulo: req.body.titulo,
-                    categoria: req.body.categoria,
-                    comentarios: [],
-                    usuario: req.body.idUsuario,
-                });
-
-                counterMeme.contador = counterMeme.contador + 1;
-
-                nuevoMeme.save().then(
-                    function(nuevoMeme) {
-                        counterMeme.save().then((counterGuardado) => {
-                            Meme.populate(
-                                nuevoMeme, [{
-                                        path: "comentarios",
-                                    },
-                                    {
-                                        path: "usuario",
-                                    },
-                                ],
-                                (error, nuevoMemeExpandido) => {
-                                    if (error) {
-                                        return res.status(400).json({
-                                            title: "Error",
-                                            error: err,
-                                        });
-                                    }
-                                    if (!nuevoMemeExpandido) {
-                                        return res.status(400).json({
-                                            title: "Error",
-                                            error: "No se pudo expandir el meme",
-                                        });
-                                    }
-                                    res.status(201).json({
-                                        message: "Meme creado",
-                                        obj: nuevoMemeExpandido,
-                                    });
-                                }
-                            );
-                        });
-                    },
-                    function(err) {
-                        return res.status(404).json({
-                            title: "Error",
-                            error: err,
-                        });
-                    }
-                );
-            }); */
 }
 
 // EXPORT

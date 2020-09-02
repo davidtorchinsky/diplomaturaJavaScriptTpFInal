@@ -65,25 +65,25 @@ function cargarComentario(req, res) {
     if (!req.body.autor) {
         return res.status(400).json({
             title: "Error bad request",
-            error: err,
+            error: "No ingreseo el usuario",
         });
     }
     if (!req.body.numero) {
         return res.status(400).json({
             title: "Error bad request",
-            error: err,
+            error: "no ingreso el numero",
         });
     }
     if (!req.body.coment) {
         return res.status(400).json({
             title: "Error bad request",
-            error: err,
+            error: "no ingreso el contenido",
         });
     }
     if (!req.body.fecha) {
         return res.status(400).json({
             title: "Error bad request",
-            error: err,
+            error: "no ingreso una fecha",
         });
     }
 
@@ -110,7 +110,7 @@ function cargarComentario(req, res) {
             });
         }
 
-        meme.comentarios.push(nuevoComentario);
+        meme.comentarios.push(nuevoComentario); //hace fala haer un save de meme?
     });
 }
 
