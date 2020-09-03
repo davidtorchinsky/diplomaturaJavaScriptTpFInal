@@ -22,4 +22,10 @@ router.post("/", UsuarioController.cargarUsuario);
 // DELETE
 //router.delete("/:emailUsuario", UsuarioController.eliminarUsuario);
 
+// AUTH
+router.get("/auth", UsuarioController.auth);
+router.get("/auth/local", UsuarioController.authLocal);
+router.get("/auth/google", UsuarioController.authGoogle);
+router.get("/auth/google/redirect", UsuarioController.googleRedirect);
+
 module.exports = router;
