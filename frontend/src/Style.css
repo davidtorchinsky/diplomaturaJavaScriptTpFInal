@@ -1,3 +1,15 @@
+
+@font-face {
+    font-family: 'OpenSans-Regular';
+    src: url(assets/fonts/OpenSans-Regular.ttf)
+}
+
+@font-face {
+    font-family: 'OpenSans-Bold';
+    src: url(assets/fonts/OpenSans-Bold.ttf)
+}
+
+
 .upload-image{
     display: flex;
     flex-direction: column;
@@ -11,3 +23,62 @@
     width: 20%;
     height: 20%;
 }
+
+.homeContainer {
+    margin:10px
+}
+
+.postContainer {
+    border-width: 10px;
+    border-color: black;
+}
+
+.postTitle {
+    color:black;
+    text-align: left;
+    font-size: 40px;
+    margin: auto;
+    font-family: 'OpenSans-Bold';
+    margin-left: -3px;
+}
+
+.categoryPost { 
+    text-align: left;
+    margin: auto;
+    margin-bottom: -5px;
+}
+
+.postDate    {
+    text-align: left;
+    margin: auto;
+    font-size: 10px;
+}
+
+
+.postVotes {
+    margin-top: 30px;
+}
+
+
+
+.numberVote{
+    font-family: "OpenSans-Bold";
+    margin-top:6px;
+    font-size: 20px;
+}
+
+.countComentContainer {
+    margin-left: 50px;
+}
+
+.countComents{
+    margin-left: 10px;
+}
+
+h1,
+h2,
+p  {
+    font-family: 'OpenSans-Regular';
+}
+
+
