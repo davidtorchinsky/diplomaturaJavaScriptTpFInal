@@ -7,8 +7,10 @@ import { UserScreen } from './screens/UserScreen';
 
 import NavbarComponent from './components/navbarComponents/NavbarComponent';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import "./Style.css";
 
 function App() {
+	
 	return (
 		<Router>
 			<div className="App">
@@ -25,6 +27,7 @@ function App() {
 					<Route path="/user" component={UserScreen} />
 				</Switch>
 			</div>
+			
 		</Router>
 	);
 }

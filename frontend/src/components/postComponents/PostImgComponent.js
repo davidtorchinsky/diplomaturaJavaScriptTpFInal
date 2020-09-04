@@ -1,11 +1,11 @@
 import React from 'react';
 
 
-export const PostImgComponent = ()=> {
+export const PostImgComponent = ({url})=> {
     
     return (
         <div>
-            <h1>PostImgComponent working...</h1>
+            <img src={require("../../assets/images/lotr.jpg")} alt="A meme"/>
         </div>
     );
 }
