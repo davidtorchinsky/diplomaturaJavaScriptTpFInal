@@ -107,25 +107,57 @@ p  {
 }
 .header .title{
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.0rem;
     flex-grow: 3;
+    line-height:1.0rem
 }
 .header .likes{
     color: green;
     font-weight: bold;
     margin-left: 20px;
     flex-grow: 1;
+    line-height:1.0rem
 }
 .recommended-description .category{
-    font-size: 0.9rem;
+    font-size: 0.6rem;
     color: #3a3a3a;
+    line-height:1.0rem
 }
 .recommended-description .author{
     color: #555555;
-    font-size: 0.8rem;
-    padding-left: 5px;
+    font-size: 0.7rem;
+    padding-left: 0px;
+    line-height:1.5rem
 }
 .thumbnail{
     width: 8vw;
     height: 8vw;
 }
+
+ul {
+    list-style-type: none;
+    margin: 10px;
+    
+}
+
+li {
+  
+    margin: 10px
+}
+
+li:first-child{
+    margin-top:75px
+}
+
+.categoriasContainer{
+   
+    max-width: 20%;
+}
+
+.positionFixed {
+    position: fixed;
+}
+
+/* .postContainer{
+    margin-top:80px
+} */

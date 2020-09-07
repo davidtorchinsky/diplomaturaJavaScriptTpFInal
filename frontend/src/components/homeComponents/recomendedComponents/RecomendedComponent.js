@@ -4,7 +4,8 @@ import React from 'react';
 export function Recomendados() {
     return (
         <div className="recommended">
-            <img className="thumbnail" src={defaultImage}></img>
+              <img  className="thumbnail" src={require("../../../assets/images/lotr.jpg")} alt="A meme"/>
+           
             <div className="recommended-description">
                 <div className="header">
                     <span className="title">Titulo del meme</span>

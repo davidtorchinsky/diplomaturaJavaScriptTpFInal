@@ -24,7 +24,7 @@ export default function NavbarComponent(props) {
     if (props.items) {
         return (
             <div className={classes.root}>
-                <AppBar position="static">
+                <AppBar position="fixed">
                     <Toolbar>{
                         props.items.map((elem) => {
                             return <Button color="inherit" component={RouterLink} to={elem.url}>{elem.name}</Button>;
