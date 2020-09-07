@@ -7,37 +7,32 @@ import { PostHeaderComponent } from './PostHeaderComponent';
 import { PostImgComponent } from './PostImgComponent';
 import { PostCountComentComponent } from './PostCountComentComponent';
 import { PostVotesComponent } from './PostVotesComponent';
+import { Button } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
-
 	paper: {
-	  padding: theme.spacing(2),
-	  margin: 'auto',
-	 
-	},
-  }));
-export const PostComponent = () => {
-	let today = new Date();
+		padding: theme.spacing(2),
+		margin: 'auto'
+	}
+}));
+export const PostComponent = ({ post }) => {
 	const classes = useStyles();
 
-	let post = {
-		category: 'Una categoria',
-		date: today,
-		title: 'Un titulo',
-		url: '../../../src/assets/images/lotr.jpg'
-	};
+	let votes = 2;
 
 	return (
-		<div>
+		<div className="postContainer">
 			<Paper elevation={3} className={classes.paper}>
-			<Grid container direction="column" justify="flex-start" alignItems="flex-start">
-				<PostHeaderComponent category={post.category} date={post.date} title={post.title} />
-				<Grid container direction="row" justify="flex-start" alignItems="flex-start">
-					<PostVotesComponent />
-					<PostImgComponent url={post.url} />
+				<Grid container direction="column" justify="flex-start" alignItems="flex-start">
+					<PostHeaderComponent category={post.categoria} date={post.fecha} title={post.titulo} />
+					<Grid container direction="row" justify="flex-start" alignItems="flex-start">
+						<PostVotesComponent />
+						<PostImgComponent url={post.url} />
+					</Grid>
+					<Button>
+						<PostCountComentComponent count={20} />
+					</Button>
 				</Grid>
-				<PostCountComentComponent count={20} />
-			</Grid>
 			</Paper>
 		</div>
 	);
