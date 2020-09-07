@@ -5,12 +5,8 @@ const router = express.Router();
 import UsuarioController from "../controllers/usuario";
 
 // GETS
-
-router.get("/", UsuarioController.getUsuarios);
-router.get("/:emailUsuario", UsuarioController.getUsuario);
-
-//router.get("/:login", UsuarioController.getLogin);
-//router.get("/:logout", UsuarioController.getLogout);
+router.get("/login", UsuarioController.getLogin);
+router.get("/logout", UsuarioController.getLogout);
 
 // PATCH o PUT
 //router.put("/:emailUsuario", UsuarioController.editarUsuario);
@@ -23,9 +19,9 @@ router.post("/", UsuarioController.cargarUsuario);
 //router.delete("/:emailUsuario", UsuarioController.eliminarUsuario);
 
 // AUTH
-router.get("/auth", UsuarioController.auth);
-router.get("/auth/local", UsuarioController.authLocal);
-router.get("/auth/google", UsuarioController.authGoogle);
-router.get("/auth/google/redirect", UsuarioController.googleRedirect);
+//router.get("/signin", UsuarioController.signin);
+//router.get("/signup", UsuarioController.signup);
 
+router.get("/", UsuarioController.getUsuarios);
+router.get("/:emailUsuario", UsuarioController.getUsuario);
 module.exports = router;
