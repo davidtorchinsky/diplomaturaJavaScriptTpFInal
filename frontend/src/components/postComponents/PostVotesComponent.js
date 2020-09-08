@@ -6,22 +6,21 @@ import { green } from '@material-ui/core/colors';
 import { red } from '@material-ui/core/colors';
 import { Button } from '@material-ui/core';
 
-export const PostVotesComponent = () => {
+export const PostVotesComponent = ({ votes }) => {
+	const upVoteHandler = () => {
+		console.log('upvote');
+	};
 
-    const upVoteHandler = () => {
-        console.log("upvote")
-    }
-
-    const downVoteHandler = () => {
-        console.log("downvote")
-    }
+	const downVoteHandler = () => {
+		console.log('downvote');
+	};
 
 	return (
 		<div className="postVotes">
-			<Button  onClick={upVoteHandler} >
+			<Button onClick={upVoteHandler}>
 				<ArrowUpwardIcon style={{ color: green[500] }} />
 			</Button>
-			<h3 className="numberVote">50</h3>
+			<h3 className="numberVote">{votes}</h3>
 			<Button onClick={downVoteHandler}>
 				<ArrowDownwardIcon style={{ color: red[500] }} />
 			</Button>

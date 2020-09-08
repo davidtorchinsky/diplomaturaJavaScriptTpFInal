@@ -1,17 +1,43 @@
 export const getAllPost = () => {
-	let post = {
-		_id: '5f4fd058eae6873d1ca07df1',
-		upvotes: [],
-		downvotes: [],
-		comentarios: [],
-		usuario: '5f4fcff5eae6873d1ca07dee',
-		fecha: '2020-02-09T03:00:00.000Z',
-		memeUrl: 'http://gph.is/2h8wI3B',
-		titulo: '1 intento',
-		categoria: 'fire',
-		__v: 0
-    };
-    return post;
+
+	let today = new Date();
+	let comentario = {
+		autor: '1',
+		numero: 1,
+		coment: 'Este es un comentario',
+		fecha: today,
+		comentarios: []
+	};
+
+	let posts = [{
+		categoria: 'Funny',
+		fecha: today,
+		titulo: 'Wait guys...',
+		memeUrl: '../../../src/assets/images/lotr.jpg',
+		upVotes: [ 1, 2, 3, 4, 5 ],
+		downVotes: [ 6, 7 ],
+		comentarios: [ comentario, comentario ]
+	},
+	{
+		categoria: 'Funny',
+		fecha: today,
+		titulo: 'Wait guys...',
+		memeUrl: '../../../src/assets/images/lotr.jpg',
+		upVotes: [ 1, 2, 3, 4, 5 ],
+		downVotes: [ 6, 7 ],
+		comentarios: [ comentario, comentario ]
+	},
+	{
+		categoria: 'News',
+		fecha: today,
+		titulo: 'Wait guys...',
+		memeUrl: '../../../src/assets/images/lotr.jpg',
+		upVotes: [ 1, 2, 3, 4, 5 ],
+		downVotes: [ 6, 7 ],
+		comentarios: [ comentario, comentario ]
+	}];
+
+    return posts;
 };
 
 export const getAllCategorias = () => {

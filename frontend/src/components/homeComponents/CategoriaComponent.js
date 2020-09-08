@@ -2,11 +2,11 @@ import React from 'react';
 import { getAllCategorias } from '../../services/PostService';
 import { Button } from '@material-ui/core';
 
-export const CategoriaComponent = () => {
+export const CategoriaComponent = ({setCategoriaClick}) => {
     let categorias = getAllCategorias();
     
     const categoriaClickHandler = (item) =>{
-        console.log(item)
+        setCategoriaClick(item)
     }
 
 	return (

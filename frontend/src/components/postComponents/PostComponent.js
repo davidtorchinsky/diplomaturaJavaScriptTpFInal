@@ -17,8 +17,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 export const PostComponent = ({ post }) => {
 	const classes = useStyles();
-
-	let votes = 2;
+	console.log(post);
+	let votes = post.upVotes.length - post.downVotes.length;
 
 	return (
 		<div className="postContainer">
@@ -26,8 +26,8 @@ export const PostComponent = ({ post }) => {
 				<Grid container direction="column" justify="flex-start" alignItems="flex-start">
 					<PostHeaderComponent category={post.categoria} date={post.fecha} title={post.titulo} />
 					<Grid container direction="row" justify="flex-start" alignItems="flex-start">
-						<PostVotesComponent />
-						<PostImgComponent url={post.url} />
+						<PostVotesComponent votes={votes} />
+						<PostImgComponent url={post.memeUrl} />
 					</Grid>
 					<Button>
 						<PostCountComentComponent count={20} />
