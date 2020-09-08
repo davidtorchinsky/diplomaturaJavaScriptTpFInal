@@ -27,7 +27,7 @@ export const HomeScreen = () => {
 	return (
 		<div className="homeContainer">
 			<Grid container spacing={3}>
-				<Grid item xs={6} sm={3}>
+				<Grid item xs={4} sm={2}>
 					<CategoriaComponent />
 				</Grid>
 				<Grid item xs={12} sm={6} className="postContainer">
@@ -43,8 +43,7 @@ export const HomeScreen = () => {
 						</li>
 					</ul>
 				</Grid>
-				<Grid item xs={6} sm={3}>
-					
+				<Grid item xs={4} sm={3}>
 					<ul>
 						<li>
 							<Recomendados />

@@ -1,163 +1,158 @@
+@font-face {
+	font-family: 'OpenSans-Regular';
+	src: url(assets/fonts/OpenSans-Regular.ttf);
+}
 
 @font-face {
-    font-family: 'OpenSans-Regular';
-    src: url(assets/fonts/OpenSans-Regular.ttf)
+	font-family: 'OpenSans-Bold';
+	src: url(assets/fonts/OpenSans-Bold.ttf);
 }
 
-@font-face {
-    font-family: 'OpenSans-Bold';
-    src: url(assets/fonts/OpenSans-Bold.ttf)
+.upload-image {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: white;
+	border: solid black 2px;
+	padding: 10px;
 }
-
-
-.upload-image{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: white;
-    border: solid black 2px;
-    padding: 10px;
-}
-.upload-image img{
-    margin: 5%;
-    width: 20%;
-    height: 20%;
+.upload-image img {
+	margin: 5%;
+	width: 20%;
+	height: 20%;
 }
 
 .homeContainer {
-    margin:10px
+	margin: 10px;
 }
 
 .postContainer {
-    border-width: 10px;
-    border-color: black;
+	border-width: 10px;
+	border-color: black;
 }
 
 .postTitle {
-    color:black;
-    text-align: left;
-    font-size: 40px;
-    margin: auto;
-    font-family: 'OpenSans-Bold';
-    margin-left: -3px;
+	color: black;
+	text-align: left;
+	font-size: 40px;
+	margin: auto;
+	font-family: 'OpenSans-Bold';
+	margin-left: -3px;
 }
 
-.categoryPost { 
-    text-align: left;
-    margin: auto;
-    margin-bottom: -5px;
+.categoryPost {
+	text-align: left;
+	margin: auto;
+	margin-bottom: -5px;
 }
 
-.postDate    {
-    text-align: left;
-    margin: auto;
-    font-size: 10px;
+.postDate {
+	text-align: left;
+	margin: auto;
+	font-size: 10px;
 }
-
 
 .postVotes {
-    margin-top: 30px;
+	margin-top: 30px;
 }
 
-
-
-.numberVote{
-    font-family: "OpenSans-Bold";
-    margin-top:6px;
-    font-size: 20px;
+.numberVote {
+	font-family: "OpenSans-Bold";
+	margin-top: 6px;
+	font-size: 20px;
 }
 
 .countComentContainer {
-    margin-left: 50px;
+	margin-left: 50px;
 }
 
-.countComents{
-    margin-left: 10px;
+.countComents {
+	margin-left: 10px;
 }
 
 h1,
 h2,
-p  {
-    font-family: 'OpenSans-Regular';
+p {
+	font-family: 'OpenSans-Regular';
 }
 
-
-.recommended{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    box-shadow: 0 0 3px grey;
-    padding: 10px;
-    margin: 5px;
-    color: #333333;
+.recommended {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	box-shadow: 0 0 3px grey;
+	padding: 10px;
+	margin: 5px;
+	color: #333333;
 }
-.recommended-description{
-    text-align: left;
-    padding-left: 10px;
+.recommended-description {
+	text-align: left;
+	padding-left: 10px;
 }
-.recommended-description p{
-    margin: 0;
-    padding: 1px;
+.recommended-description p {
+	margin: 0;
+	padding: 1px;
 }
-.recommended-description .header{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+.recommended-description .header {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
 }
-.header .title{
-    font-weight: bold;
-    font-size: 1.0rem;
-    flex-grow: 3;
-    line-height:1.0rem
+.header .title {
+	font-weight: bold;
+	font-size: 1.0rem;
+	flex-grow: 3;
+	line-height: 1.0rem;
 }
-.header .likes{
-    color: green;
-    font-weight: bold;
-    margin-left: 20px;
-    flex-grow: 1;
-    line-height:1.0rem
+.header .likes {
+	color: green;
+	font-weight: bold;
+	margin-left: 20px;
+	flex-grow: 1;
+	line-height: 1.0rem;
 }
-.recommended-description .category{
-    font-size: 0.6rem;
-    color: #3a3a3a;
-    line-height:1.0rem
+.recommended-description .category {
+	font-size: 0.6rem;
+	color: #3a3a3a;
+	line-height: 1.0rem;
 }
-.recommended-description .author{
-    color: #555555;
-    font-size: 0.7rem;
-    padding-left: 0px;
-    line-height:1.5rem
+.recommended-description .author {
+	color: #555555;
+	font-size: 0.7rem;
+	padding-left: 0px;
+	line-height: 1.5rem;
 }
-.thumbnail{
-    width: 8vw;
-    height: 8vw;
+.thumbnail {
+	width: 8vw;
+	height: 8vw;
 }
 
 ul {
-    list-style-type: none;
-    margin: 10px;
-    
+	list-style-type: none;
 }
 
 li {
-  
-    margin: 10px
+	margin: 10px;
 }
 
-li:first-child{
-    margin-top:75px
+li:first-child {
+	margin-top: 75px;
 }
 
-.categoriasContainer{
-   
-    max-width: 20%;
+.categoriasContainer {
+	max-width: 20%;
 }
 
 .positionFixed {
-    position: fixed;
+	position: fixed;
 }
 
 /* .postContainer{
     margin-top:80px
 } */
+
+
+.homeContainer ul{
+    width: 110%;
+}
