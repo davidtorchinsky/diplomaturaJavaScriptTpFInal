@@ -27,13 +27,13 @@ export const HomeScreen = () => {
 
 	return (
 		<div className="homeContainer">
-			<Grid container spacing={3}>
+			<Grid container spacing={0}>
 				<Hidden xsDown>
-					<Grid item xs={0} sm={2}>
+					<Grid item xs={0} sm={2} md={2}>
 						<CategoriaComponent setCategoriaClick={setCategoriaClick} />
 					</Grid>
 				</Hidden>
-				<Grid item xs={12} sm={6} className="postContainer">
+				<Grid item xs={12} sm={9}  md={6} className="postContainer">
 					<ul>
 						{postsAMostrar.map((post) => {
 							return (
@@ -45,7 +45,7 @@ export const HomeScreen = () => {
 					</ul>
 				</Grid>
 				<Hidden xsDown>
-					<Grid item xs={0} sm={3}>
+					<Grid item xs={0} sm={0}  md={4} >
 						<ul>
 							<li>
 								<Recomendados />

@@ -25,9 +25,13 @@ export const PostComponent = ({ post }) => {
 			<Paper elevation={3} className={classes.paper}>
 				<Grid container direction="column" justify="flex-start" alignItems="flex-start">
 					<PostHeaderComponent category={post.categoria} date={post.fecha} title={post.titulo} />
-					<Grid container direction="row" justify="flex-start" alignItems="flex-start">
-						<PostVotesComponent votes={votes} setVotes={setVotes} />
-						<PostImgComponent url={post.memeUrl} />
+					<Grid container direction="row">
+						<Grid xs={2} sm={1}>
+							<PostVotesComponent votes={votes} setVotes={setVotes} />
+						</Grid>
+						<Grid xs={10} sm={11}>
+							<PostImgComponent url={post.memeUrl} />
+						</Grid>
 					</Grid>
 					<Button>
 						<PostCountComentComponent count={20} />
