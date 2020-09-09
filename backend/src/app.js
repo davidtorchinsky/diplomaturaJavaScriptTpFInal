@@ -4,7 +4,6 @@ import {} from "dotenv/config";
 import comentarioRoutes from "./routes/comentario";
 import usuarioRoutes from "./routes/usuario";
 import memeRoutes from "./routes/meme";
-import authRoutes from "./routes/auth";
 import passport from "passport";
 import bcrypt from "bcrypt";
 import User from "./Models/usuario";
@@ -64,11 +63,15 @@ opts.algorithms = [process.env.JWT_ALGORITHM];
 passport.use(
   new JwtStrategy(opts, (jwt_payload, done) => {
     console.log("Estrategia JWT");
-    User.findOne({ _id: jwt_payload.sub })
+    User.findOne({ mail: jwt_payload.mail })
       .then((data) => {
         if (!data) {
+          console.log("retorna false jwt");
           return done(null, false);
-        } else return done(null, data);
+        } else {
+          console.log("Retorna data:" + data);
+          return done(null, data);
+        }
       })
       .catch((err) => done(err, null));
   })
@@ -82,6 +85,10 @@ app.use(passport.initialize());
 app.use("/comentario", comentarioRoutes);
 app.use("/usuario", usuarioRoutes);
 app.use("/meme", memeRoutes);
-//app.use("/auth", authRoutes);
+app.use(
+  "/auth",
+  passport.authenticate("jwt", { session: false }),
+  usuarioRoutes
+);
 
 module.exports = app;

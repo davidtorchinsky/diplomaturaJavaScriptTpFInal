@@ -8,6 +8,15 @@ import UsuarioController from "../controllers/usuario";
 //router.get("/login", UsuarioController.getLogin);
 router.get("/logout", UsuarioController.getLogout);
 
+// Ruta segura para probar JWT
+router.get("/profile", (req, res) => {
+  console.log(req);
+  res.json({
+    message: "Ruta segura OK",
+    mail: req.user.mail,
+  });
+});
+
 // PATCH o PUT
 //router.put("/:emailUsuario", UsuarioController.editarUsuario);
 router.patch("/asignarMeme/:emailUsuario", UsuarioController.asignarMeme);
