@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
@@ -6,13 +6,15 @@ import { green } from '@material-ui/core/colors';
 import { red } from '@material-ui/core/colors';
 import { Button } from '@material-ui/core';
 
-export const PostVotesComponent = ({ votes }) => {
+export const PostVotesComponent = ({ votes, setVotes }) => {
+
+
 	const upVoteHandler = () => {
-		console.log('upvote');
+		console.log("vote up");
 	};
 
 	const downVoteHandler = () => {
-		console.log('downvote');
+		console.log("vote down");
 	};
 
 	return (

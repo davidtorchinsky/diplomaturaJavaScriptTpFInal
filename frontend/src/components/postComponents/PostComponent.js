@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
@@ -16,9 +16,9 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 export const PostComponent = ({ post }) => {
-	const classes = useStyles();
-	console.log(post);
-	let votes = post.upVotes.length - post.downVotes.length;
+	let votos = post.upVotes.length - post.downVotes.length;
+	const classes = useStyles;
+	const [ votes, setVotes ] = useState(votos);
 
 	return (
 		<div className="postContainer">
@@ -26,7 +26,7 @@ export const PostComponent = ({ post }) => {
 				<Grid container direction="column" justify="flex-start" alignItems="flex-start">
 					<PostHeaderComponent category={post.categoria} date={post.fecha} title={post.titulo} />
 					<Grid container direction="row" justify="flex-start" alignItems="flex-start">
-						<PostVotesComponent votes={votes} />
+						<PostVotesComponent votes={votes} setVotes={setVotes} />
 						<PostImgComponent url={post.memeUrl} />
 					</Grid>
 					<Button>
