@@ -9,8 +9,6 @@ var UsuarioSchema = Schema({
     unique: true,
   },
   password: String,
-  googleId: String, //Agregados para estrategia google de Passport
-  username: String, //Agregados para estrategia google de Passport
   //ver esta parte
   logoUrl: String,
 

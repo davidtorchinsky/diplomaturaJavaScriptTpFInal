@@ -2,6 +2,65 @@
 
 import Usuario from "../Models/usuario";
 import Meme from "../Models/meme";
+import bcrypt from "bcrypt";
+import passport from "passport";
+import {} from "dotenv/config";
+import jwt from "jsonwebtoken";
+
+const register = (req, res, next) => {
+  console.log("Registro de usuarios");
+  Usuario.findOne({ mail: req.body.mail })
+    .then((usuario) => {
+      if (usuario) {
+        res.status(200).json({ message: "Error: Ya existe el usuario" });
+      } else {
+        console.log("Creando el usuario");
+        const hash = bcrypt.hashSync(
+          req.body.password,
+          parseInt(process.env.BCRYPT_ROUNDS)
+        );
+        console.log("Hash : " + hash);
+        const newUser = new Usuario({
+          mail: req.body.mail,
+          username: req.body.username,
+          password: hash,
+        });
+        return newUser.save();
+      }
+    })
+    .then((data) => {
+      res.status(201).json({ data: data });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
+const getLogin = (req, res, next) => {
+  console.log("login");
+  passport.authenticate("local", { session: false }, (err, user) => {
+    console.log("autenticando Local");
+
+    if (err || !user) {
+      next(res.send("usuario o contraseña incorrectos"));
+    } else {
+      console.log("Generación del token");
+      const payload = {
+        sub: user._id,
+        exp: Date.now() + parseInt(process.env.JWT_LIFETIME),
+        mail: user.mail,
+      };
+
+      const token = jwt.sign(JSON.stringify(payload), process.env.JWT_SECRET, {
+        algorithm: process.env.JWT_ALGORITHM,
+      });
+      // Guardo el token en el localStorage a modo de sesión
+      //localStorage.setItem("JWT_token", "token");
+      console.log("Cargo en localStorage el token");
+      res.status(200).json({ data: { token: token } });
+    }
+  })(req, res);
+};
 
 function getUsuarios(req, res) {
   Usuario.find({}, function (err, usuarios) {
@@ -45,7 +104,6 @@ function getUsuario(req, res) {
   });
 }
 
-//login y logout
 //editar usuario
 function asignarMeme(req, res) {
   //Asocio el meme al usuario
@@ -147,10 +205,6 @@ function cargarUsuario(req, res) {
   });
 }
 
-function getLogin(req, res) {
-  res.send("Login");
-}
-
 function getLogout(req, res) {
   res.send("Logout");
 }
@@ -165,4 +219,5 @@ module.exports = {
   asignarMeme,
   cargarUsuario,
   //eliminarUsuario,
+  register,
 };

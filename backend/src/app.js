@@ -82,6 +82,6 @@ app.use(passport.initialize());
 app.use("/comentario", comentarioRoutes);
 app.use("/usuario", usuarioRoutes);
 app.use("/meme", memeRoutes);
-app.use("/auth", authRoutes);
+//app.use("/auth", authRoutes);
 
 module.exports = app;

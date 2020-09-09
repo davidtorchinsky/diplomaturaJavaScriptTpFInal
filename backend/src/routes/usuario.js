@@ -5,7 +5,7 @@ const router = express.Router();
 import UsuarioController from "../controllers/usuario";
 
 // GETS
-router.get("/login", UsuarioController.getLogin);
+//router.get("/login", UsuarioController.getLogin);
 router.get("/logout", UsuarioController.getLogout);
 
 // PATCH o PUT
@@ -14,6 +14,8 @@ router.patch("/asignarMeme/:emailUsuario", UsuarioController.asignarMeme);
 
 // POST
 router.post("/", UsuarioController.cargarUsuario);
+router.post("/login", UsuarioController.getLogin);
+router.post("/register", UsuarioController.register);
 
 // DELETE
 //router.delete("/:emailUsuario", UsuarioController.eliminarUsuario);
