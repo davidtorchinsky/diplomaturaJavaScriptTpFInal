@@ -17,9 +17,20 @@ router.route("/asignarMeme/:emailUsuario").put(UsuarioController.asignarMeme); *
 router.get("/", UsuarioController.getUsuarios);
 router.get("/:emailUsuario", UsuarioController.getUsuario);
 router.get("/id/:idUsuario", UsuarioController.getUsuarioById);
+//router.get("/login", UsuarioController.getLogin);
+router.get("/logout", UsuarioController.getLogout);
 
-//router.get("/login/", UsuarioController.getLogin);
-//router.get("/logout/", UsuarioController.getLogout);
+// Ruta segura para probar JWT
+router.get("/profile", (req, res) => {
+  console.log(req);
+  res.json({
+    message: "Ruta segura OK",
+    mail: req.user.mail,
+  });
+});
+
+//router.get("/:login", UsuarioController.getLogin);
+//router.get("/:logout", UsuarioController.getLogout);
 
 // PATCH o PUT
 //router.put("/:emailUsuario", UsuarioController.editarUsuario);
@@ -27,8 +38,16 @@ router.patch("/asignarMeme/:emailUsuario", UsuarioController.asignarMeme);
 
 // POST
 router.post("/", UsuarioController.cargarUsuario);
+router.post("/login", UsuarioController.getLogin);
+router.post("/register", UsuarioController.register);
 
 // DELETE
 //router.delete("/:emailUsuario", UsuarioController.eliminarUsuario);
 
+// AUTH
+//router.get("/signin", UsuarioController.signin);
+//router.get("/signup", UsuarioController.signup);
+
+router.get("/", UsuarioController.getUsuarios);
+router.get("/:emailUsuario", UsuarioController.getUsuario);
 module.exports = router;

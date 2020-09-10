@@ -8,7 +8,7 @@ require("./database");
 dotenv.config();
 
 async function main() {
-    await app.listen(app.get("port"));
-    await console.log("Server on port", app.get("port"));
+  await app.listen(app.get("port"));
+  console.log("Server on port", app.get("port"));
 }
 main();
