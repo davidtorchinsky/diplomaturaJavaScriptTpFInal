@@ -2,9 +2,15 @@ import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 
 import { PostComponent } from '../components/postComponents/PostComponent';
-import { Recomendados } from '../components/homeComponents/recomendedComponents/RecomendedComponent';
 import { CategoriaComponent } from '../components/homeComponents/CategoriaComponent';
 import { getAllPost } from '../services/PostService';
+import { RecomendadosList } from '../components/homeComponents/recomendedComponents/RecomendadosList';
+
+
+const recomendados = [{ titulo: "Algo", likes: '10', author: 'nakosuke', categorias: [{ nombre: 'Categoria1' }, { nombre: 'Categoria2' }] },
+	{ titulo: "Otro", likes: '50', author: 'aru', categorias: [{ nombre: 'Categoria5' }] },
+	{ titulo: "Y uno mas con nombre largo a ver que pasa cuando no entra en el div", likes: '50', author: 'unusuariodelapagina', categorias: [{ nombre: 'Categoria5' }, { nombre: 'Categoria10' }, {nombre: 'Categoria8'}, {nombre: 'Categoria9'}, {nombre: 'Politica y weas'}, {nombre: 'Categoria5'}, ] },
+];
 
 export const HomeScreen = () => {
 	let posts = getAllPost();
@@ -40,20 +46,7 @@ export const HomeScreen = () => {
 					</ul>
 				</Grid>
 				<Grid item xs={4} sm={3}>
-					<ul>
-						<li>
-							<Recomendados />
-						</li>
-						<li>
-							<Recomendados />
-						</li>
-						<li>
-							<Recomendados />
-						</li>
-						<li>
-							<Recomendados />
-						</li>
-					</ul>
+					<RecomendadosList recomendados={recomendados}/>
 				</Grid>
 			</Grid>
 		</div>
