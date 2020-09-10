@@ -34,22 +34,24 @@
 .postTitle {
 	color: black;
 	text-align: left;
-	font-size: 40px;
+	font-size: 2.5rem;
 	margin: auto;
 	font-family: 'OpenSans-Bold';
-	margin-left: -3px;
+	margin-left: 3px;
 }
 
 .categoryPost {
 	text-align: left;
 	margin: auto;
 	margin-bottom: -5px;
+	margin-left: 3px;
 }
 
 .postDate {
 	text-align: left;
 	margin: auto;
-	font-size: 10px;
+	font-size: 0.7rem;
+	margin-left: 3px;
 }
 
 .postVotes {
@@ -59,7 +61,7 @@
 .numberVote {
 	font-family: "OpenSans-Bold";
 	margin-top: 6px;
-	font-size: 20px;
+	font-size: 1.4rem;
 }
 
 .countComentContainer {
@@ -142,6 +144,7 @@ li:first-child {
 
 .categoriasContainer {
 	max-width: 20%;
+	position: fixed;
 }
 
 .positionFixed {
@@ -154,5 +157,22 @@ li:first-child {
 
 
 .homeContainer ul{
-    width: 110%;
+    width: 100%;
+}
+
+.responsive {
+	width: 100%;
+	height: auto;
+  }
+
+ @media only screen and (max-width: 600px){
+	li {
+		margin:0
+	}
+	.homeContainer ul {
+		width: 92%;
+	}
+	.homeContainer {
+		margin: 0
+	}
 }

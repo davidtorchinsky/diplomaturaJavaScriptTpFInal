@@ -10,7 +10,7 @@ export const CategoriaComponent = ({setCategoriaClick}) => {
     }
 
 	return (
-		<div className='categoriasContainer positionFixed'>
+		<div className='categoriasContainer '>
 			<ul>
 				{categorias.map((item) => {
 					return (
