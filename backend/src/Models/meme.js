@@ -12,9 +12,9 @@ var Schema = mongoose.Schema;
 
 var MemeSchema = Schema({
     numero: Number,
-    //Ver la verificacion con usuario
-    upvotes: [String], //guardo el Usuario
-    downvotes: [String],
+
+    upvotes: [{ type: String }], //guardo el Usuario email
+    downvotes: [{ type: String }],
     fecha: Date,
     memeUrl: String,
     titulo: String,
@@ -29,10 +29,10 @@ var MemeSchema = Schema({
     }, ],
 
     //Relacion con Usuario
-    usuario: [{
+    usuario: {
         type: Schema.Types.ObjectId,
         ref: "Usuario",
-    }, ],
+    },
 });
 
 var Meme = mongoose.model("Meme", MemeSchema);

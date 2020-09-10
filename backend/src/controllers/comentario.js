@@ -61,7 +61,7 @@ function getComentariosUsuarios(req, res) {
     });
 }
 
-function cargarComentario(req, res) {
+async function cargarComentario(req, res) {
     if (!req.body.autor) {
         return res.status(400).json({
             title: "Error bad request",
@@ -86,31 +86,31 @@ function cargarComentario(req, res) {
             error: "no ingreso una fecha",
         });
     }
+    if (!req.params.idMeme) {
+        return res.status(400).json({
+            title: "Error bad request",
+            error: "no ingreso un id Meme",
+        });
+    }
 
     var nuevoComentario = new Comentario({
-        dni: req.body.autor,
-        nombre: req.body.numero,
-        apellido: req.body.coment,
-        telefono: req.body.fecha,
+        autor: req.body.autor,
+        numero: req.body.numero,
+        coment: req.body.coment,
+        fecha: req.body.fecha,
+        idMeme: req.params.idMeme,
         comentarios: [],
     });
+    /*Cargo el comentario en el meme */
+    await Meme.updateOne({ _id: req.params.idMeme }, { $push: { comentarios: nuevoComentario } });
+
     //Cargo el comenario en la BD
-    nuevoComentario.save().then(function(nuevoComentario) {
+
+    await nuevoComentario.save().then(function(nuevoComentario) {
         res.status(201).json({
             message: "Comentario creado",
             obj: nuevoComentario,
         });
-    });
-    //Cargo el comentario al meme
-    Meme.findById({ _id: req.params.idMeme }).exec(function(error, meme) {
-        if (error) {
-            return res.status(400).json({
-                title: "Error bad request",
-                error: error,
-            });
-        }
-
-        meme.comentarios.push(nuevoComentario); //hace fala haer un save de meme?
     });
 }
 

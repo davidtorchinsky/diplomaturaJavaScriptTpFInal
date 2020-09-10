@@ -8,7 +8,7 @@ var ComentarioSchema = new Schema({
     numero: Number,
     coment: String,
     fecha: Date,
-    idPost: String,
+    idMeme: String,
     comentarios: [{
         type: Schema.Types.ObjectId,
         ref: "Comentario",

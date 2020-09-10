@@ -12,7 +12,7 @@ router.get("/", ComentarioController.getComentarios);
 // PATCH o PUT
 
 // POST
-router.post("/", ComentarioController.cargarComentario);
+router.post("/:idMeme", ComentarioController.cargarComentario);
 router.post("/:idComentario", ComentarioController.responderComentario);
 
 // DELETE

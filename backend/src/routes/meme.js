@@ -6,14 +6,14 @@ import MemeController from "../controllers/meme";
 
 // GETS
 router.get("/", MemeController.getMemes); //obtengo todos los meme
-router.get("/:idUsuario", MemeController.getMemeUsuario); // obtengo todos los memes de un determinado usuario
+router.get("/memesUsuario/:idUsuario", MemeController.getMemesUsuario); // obtengo todos los memes de un determinado usuario
 router.get("/:idMeme", MemeController.getMeme);
 router.get("/buscarPorCategoria/:categoria", MemeController.getMemesCategoria);
 
 // PATCH o PUT
 /* router.patch("/", MemeController.editarMeme); */
-router.patch("/upVote/:idMeme/:idUsuario", MemeController.upVotes);
-router.patch("/downVote/:idMeme/:idUsuario", MemeController.downVotes);
+router.patch("/upVote/:idMeme/:emailUsuario", MemeController.upVotes);
+router.patch("/downVote/:idMeme/:emailUsuario", MemeController.downVotes);
 
 // POST
 router.post("/", MemeController.cargarMeme);
