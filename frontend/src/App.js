@@ -12,7 +12,7 @@ import "./Style.css";
 function App() {
 	
 	return (
-		<Router >
+		<Router>
 			<div className="App">
 				<NavbarComponent
 					items={[
@@ -21,7 +21,7 @@ function App() {
 						{ name: 'Mi usuario', url: '/user' }
 					]}
 				/>
-				<Switch  >
+				<Switch>
 					<Route path="/add" component={AddPostScreen} />
 					<Route path="/" component={HomeScreen} />
 					<Route path="/user" component={UserScreen} />

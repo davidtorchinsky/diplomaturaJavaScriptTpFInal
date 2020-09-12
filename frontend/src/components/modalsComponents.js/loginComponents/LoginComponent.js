@@ -1,11 +1,11 @@
 import React from 'react';
 
 
-export const CategoriaComponent = ()=> {
+export const LoginComponent = ()=> {
     
     return (
         <div>
-            <h1>CategoriaComponent...</h1>
+            <h1>LoginComponent working...</h1>
         </div>
     );
 }
