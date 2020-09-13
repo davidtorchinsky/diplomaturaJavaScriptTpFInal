@@ -111,15 +111,15 @@ function upVotes(req, res) {
 
         console.log("el meme es de tipo " + typeof meme);
 
-        console.log("meme.upvotes es " + meme.upvotes);
+        console.log("meme.upvotes es " + typeof meme[0].upvotes);
 
         if (
-            meme.upvotes.indexOf(req.params.emailUsuario) === -1 &&
-            meme.downvotes.indexOf(req.params.emailUsuario) === -1
+            meme[0].upvotes.indexOf(req.params.emailUsuario) === -1 &&
+            meme[0].downvotes.indexOf(req.params.emailUsuario) === -1
         ) {
-            /*Otra forma de cargar el voto que tampoco nos esta funcionando Meme.updateOne({ _id: req.params.idMeme }, { $push: { upvotes: req.params.emailUsuario } }); */
-            meme.upvotes.push(req.params.emailUsuario);
-            meme.save().then(
+            //Otra forma de cargar el voto que tampoco nos esta funcionando Meme.updateOne({ _id: req.params.idMeme }, { $push: { upvotes: req.params.emailUsuario } });
+            meme[0].upvotes.push(req.params.emailUsuario);
+            meme[0].save().then(
                 function(meme) {
                     res.status(201).json({
                         message: "Comentario Cargado al meme",
@@ -138,39 +138,13 @@ function upVotes(req, res) {
                 message: "El usuario ya ha votado",
             });
         }
-
-        /* if (!meme.upvotes && !meme.downvotes) {
-                console.log("entre al if");
-                console.log("El tipo del email es " + typeof req.params.emailUsuario);
-                Meme.updateOne({ _id: req.params.idMeme }, { $push: { upvotes: req.params.emailUsuario } });
-                return res.status(201).json({
-                    message: "Se cargo exitosamente el comentario",
-                });
-            } else {
-                if (
-                    meme.upvotes.indexOf(req.params.emailUsuario) === -1 &&
-                    meme.downvotes.indexOf(req.params.emailUsuario) === -1
-                ) {
-                    console.log("cargo el voto");
-                    //meme.upVotes.push(req.params.email);
-                    Meme.updateOne({ _id: req.params.idMeme }, { $push: { upvotes: req.params.emailUsuario } });
-                    return res.status(201).json({
-                        message: "Se cargo exitosamente el comentario",
-                    });
-                } else {
-                    return res.status(200).json({
-                        message: "El usuario ya ha votado",
-                    });
-                }
-            } */
     });
 }
 
 function downVotes(req, res) {
-    Meme.findByIdAndUpdate({ _id: req.params.idMeme }, async function(
-        err,
-        meme
-    ) {
+    console.log(req.params);
+
+    Meme.find({ _id: req.params.idMeme }, function(err, meme) {
         if (err) {
             return res.status(400).json({
                 title: "Error bad request",
@@ -184,14 +158,35 @@ function downVotes(req, res) {
             });
         }
         //Verifico en los votos positivos y negativos que el usuario no haya votado
+        console.log("el meme que busque es:" + meme);
+
+        console.log("el meme es de tipo " + typeof meme);
+
+        console.log("meme.upvotes es " + meme[0].upvotes);
+        console.log("meme.downvotes es " + meme[0].downvotes);
+
         if (
-            meme.upVotes.indexOf(req.params.email) != -1 &&
-            meme.downVotes.indexOf(req.params.email) != -1
+            meme[0].upvotes.indexOf(req.params.emailUsuario) === -1 &&
+            meme[0].downvotes.indexOf(req.params.emailUsuario) === -1
         ) {
-            console.log("el usuario no voto y lo cargo");
-            await meme.downVotes.push(req.params.email);
+            //Otra forma de cargar el voto que tampoco nos esta funcionando Meme.updateOne({ _id: req.params.idMeme }, { $push: { upvotes: req.params.emailUsuario } });
+            meme[0].downvotes.push(req.params.emailUsuario);
+            meme[0].save().then(
+                function(meme) {
+                    res.status(201).json({
+                        message: "Comentario Cargado al meme",
+                        obj: meme,
+                    });
+                },
+                function(err) {
+                    return res.status(400).json({
+                        title: "Error al guardar el meme",
+                        error: err,
+                    });
+                }
+            );
         } else {
-            res.status(200).json({
+            return res.status(200).json({
                 message: "El usuario ya ha votado",
             });
         }
