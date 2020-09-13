@@ -1,12 +1,13 @@
 import React from 'react';
 import { getAllCategorias } from '../../services/PostService';
 import { Button } from '@material-ui/core';
+import { useHistory } from "react-router-dom";
 
 export const CategoriaComponent = ({setCategoriaClick}) => {
     let categorias = getAllCategorias();
-    
+	let history = useHistory();
     const categoriaClickHandler = (item) =>{
-        setCategoriaClick(item)
+		history.push("/",{item})
     }
 
 	return (

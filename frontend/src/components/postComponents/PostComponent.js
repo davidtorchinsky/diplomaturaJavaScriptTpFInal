@@ -9,6 +9,9 @@ import { PostCountComentComponent } from './PostCountComentComponent';
 import { PostVotesComponent } from './PostVotesComponent';
 import { Button } from '@material-ui/core';
 
+import { useHistory } from "react-router-dom";
+
+
 const useStyles = makeStyles((theme) => ({
 	paper: {
 		padding: theme.spacing(2),
@@ -17,8 +20,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 export const PostComponent = ({ post }) => {
 	let votos = post.upVotes.length - post.downVotes.length;
+	let history = useHistory();
 	const classes = useStyles;
 	const [ votes, setVotes ] = useState(votos);
+
+
+	const comentButtonHandler = ()=>{
+		history.push("/post",{post})
+	}
 
 	return (
 		<div className="postContainer">
@@ -33,7 +42,7 @@ export const PostComponent = ({ post }) => {
 							<PostImgComponent url={post.memeUrl} />
 						</Grid>
 					</Grid>
-					<Button>
+					<Button onClick={()=>comentButtonHandler()} >
 						<PostCountComentComponent count={20} />
 					</Button>
 				</Grid>

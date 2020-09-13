@@ -151,9 +151,17 @@ li:first-child {
 	position: fixed;
 }
 
+.logoHead{
+	width: 20%;
+}
+
 /* .postContainer{
     margin-top:80px
 } */
+
+.postScreenContainer{
+	margin-top:5rem
+}
 
 
 .homeContainer ul{
