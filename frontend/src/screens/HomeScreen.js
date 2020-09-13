@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
-
 import { PostComponent } from '../components/postComponents/PostComponent';
 import { CategoriaComponent } from '../components/homeComponents/CategoriaComponent';
 import { getAllPost } from '../services/PostService';
@@ -15,7 +14,6 @@ const recomendados = [{ titulo: "Algo", likes: '10', author: 'nakosuke', categor
 
 export const HomeScreen = () => {
 	let posts = getAllPost();
-
 	const [ categoriaClick, setCategoriaClick ] = useState('All');
 	const [ postsAMostrar, setPostsAMostrar ] = useState(posts);
 	const [ widthChange, setWidthChange ] = useState(false);
@@ -44,7 +42,7 @@ export const HomeScreen = () => {
 						{postsAMostrar.map((post) => {
 							return (
 								<li key={post}>
-									<PostComponent post={post} />
+									<PostComponent post={post}/>
 								</li>
 							);
 						})}

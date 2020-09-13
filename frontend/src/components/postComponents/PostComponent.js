@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
-
 import { PostHeaderComponent } from './PostHeaderComponent';
 import { PostImgComponent } from './PostImgComponent';
 import { PostCountComentComponent } from './PostCountComentComponent';
@@ -30,7 +29,7 @@ export const PostComponent = ({ post }) => {
 							<PostVotesComponent votes={votes} setVotes={setVotes} />
 						</Grid>
 						<Grid xs={10} sm={11}>
-							<PostImgComponent url={post.memeUrl} />
+							<PostImgComponent img={post.memeUrl} url={post.uid} />
 						</Grid>
 					</Grid>
 					<Button>

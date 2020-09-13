@@ -6,6 +6,7 @@ import { Button, Container, Divider, Typography, TextField } from '@material-ui/
 
 const useStyles = makeStyles((theme) => ({
 	mainPage: {
+		marginTop: '8vh',
 		display: 'flex',
 		flexDirection: 'column'
 	},

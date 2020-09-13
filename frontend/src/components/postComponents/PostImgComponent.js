@@ -1,11 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-
-export const PostImgComponent = ({url})=> {
+export const PostImgComponent = ({img, url})=> {
     
     return (
         <div>
-            <img src={require("../../assets/images/lotr.jpg")} alt="A meme" className='responsive' />
+            <Link to={url}>
+                <img src={require("../../assets/images/lotr.jpg")} alt="A meme" className='responsive' />
+            </Link>
         </div>
     );
 }
