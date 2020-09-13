@@ -10,11 +10,11 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./Style.css";
 
 function App() {
-  const [userState, setUserState] = useState(false);
+  const [user, setUser] = useState(null);
   return (
     <Router>
       <div className="App">
-        <UserContext.Provider value={{ userState, setUserState }}>
+        <UserContext.Provider value={{ user, setUser }}>
           <NavbarComponent
             items={[
               { name: "Inicio", url: "/" },
