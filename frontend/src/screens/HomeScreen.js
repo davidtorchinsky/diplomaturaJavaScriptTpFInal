@@ -11,11 +11,11 @@ export const HomeScreen = (props) => {
 	let posts = getAllPost();
 	let categoriaClick = props.location.state ? props.location.state.item : 'All';
 	console.log('categoria: ', categoriaClick);
-	
+
 	//const [ categoriaClick, setCategoriaClick ] = useState(props.location.state.item);
-	const [ postsAMostrar, setPostsAMostrar ] = useState(posts);
-	const [ widthChange, setWidthChange ] = useState(false);
-	const [ isMobile, setisMobile ] = useState(false);
+	const [postsAMostrar, setPostsAMostrar] = useState(posts);
+	const [widthChange, setWidthChange] = useState(false);
+	const [isMobile, setisMobile] = useState(false);
 
 	useEffect(
 		() => {
@@ -24,7 +24,7 @@ export const HomeScreen = (props) => {
 			});
 			setPostsAMostrar(filterArray);
 		},
-		[ categoriaClick ]
+		[categoriaClick]
 	);
 
 	return (

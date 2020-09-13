@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import TextField from '@material-ui/core/TextField';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { Hidden } from '@material-ui/core';
@@ -12,6 +13,8 @@ import { CategoriaComponent } from '../components/homeComponents/CategoriaCompon
 import { RecomendadosList } from '../components/homeComponents/recomendedComponents/RecomendadosList';
 import { PostComponent } from '../components/postComponents/PostComponent';
 
+
+
 const useStyles = makeStyles((theme) => ({
 	paper: {
 		padding: theme.spacing(2),
@@ -21,8 +24,19 @@ const useStyles = makeStyles((theme) => ({
 
 export const PostScreen = (props) => {
 	const classes = useStyles;
-	
+
+	const [input, setInput] = useState('');
 	let post = props.location.state.post;
+
+	const handleKeyDown = (event) => {
+		if (event.key === 'Enter') {
+			console.log(input)
+		}
+	}
+
+	const onChangeTextHandler = (event) => {
+		setInput(event.target.value)
+	}
 
 	return (
 		<div className="homeContainer">
@@ -45,6 +59,13 @@ export const PostScreen = (props) => {
 					</Grid>
 				</Hidden>
 			</Grid>
+			<TextField id="outlined-basic" label="Comentar" variant="outlined"
+				style={{ margin: 8, width: '120vh' }}
+				margin="normal"
+				onKeyDown={handleKeyDown}
+				onChange={(e) => onChangeTextHandler(e)}
+			/>
+
 			<PostComentComponent coments={post.comentarios} />
 		</div>
 	);

@@ -7,10 +7,10 @@ export const PostComentComponent = ({ coments }) => {
 			<ul>
 				{coments.map((coment) => {
 					return (
-						<li key={coment.coment}>
+						<li key={coment.autor}>
 							<p>{coment.coment}</p>
-                            <p>{coment.autor}</p>
-                            
+							<p>{coment.autor}</p>
+
 						</li>
 					);
 				})}
