@@ -1,11 +1,20 @@
 import React from 'react';
 
+export const PostComentComponent = ({ coments }) => {
+	console.log(coments);
+	return (
+		<div>
+			<ul>
+				{coments.map((coment) => {
+					return (
+						<li key={coment.autor}>
+							<p>{coment.coment}</p>
+							<p>{coment.autor}</p>
 
-export const PostComentComponent = ()=> {
-    
-    return (
-        <div>
-            <h1>PostComentComponent working...</h1>
-        </div>
-    );
-}
+						</li>
+					);
+				})}
+			</ul>
+		</div>
+	);
+};

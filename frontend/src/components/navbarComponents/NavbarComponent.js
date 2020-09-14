@@ -9,15 +9,15 @@ import SimpleModal from "../../screens/SimpleModal";
 import { UserContext } from "../../UserContext";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
+	root: {
+		flexGrow: 1
+	},
+	menuButton: {
+		marginRight: theme.spacing(2)
+	},
+	title: {
+		flexGrow: 1
+	}
 }));
 
 export default function NavbarComponent(props) {
@@ -36,11 +36,6 @@ export default function NavbarComponent(props) {
         <AppBar position="static">
           <Toolbar>
             {props.items.map((elem) => {
-              return (
-                <Button color="inherit" component={RouterLink} to={elem.url}>
-                  {elem.name}
-                </Button>
-              );
             })}
             {user ? (
               <Button type="button" onClick={() => handleLogOut()}>
@@ -57,4 +52,13 @@ export default function NavbarComponent(props) {
       </div>
     );
   }
+              return (
+              );
+                </Button>
+                  {elem.name}
+                <Button color="inherit" component={RouterLink} to={elem.url}>
+								<Button color="inherit" component={RouterLink} to={elem.url}>
+									{elem.img && <img src={require("../../assets/images/logo 11 gag.png")} alt="A meme" className="logoHead" />}
+									{!elem.img && elem.name}
+								</Button>
 }

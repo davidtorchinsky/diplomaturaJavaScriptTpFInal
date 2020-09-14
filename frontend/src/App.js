@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import "./Style.css";
 import { HomeScreen } from "./screens/HomeScreen";
+import { PostScreen } from "./screens/PostScreen";
 import { AddPostScreen } from "./screens/AddPostScreen";
 import { UserScreen } from "./screens/UserScreen";
 import { UserContext } from "./UserContext";
@@ -17,7 +18,7 @@ function App() {
         <UserContext.Provider value={{ user, setUser }}>
           <NavbarComponent
             items={[
-              { name: "Inicio", url: "/" },
+              { name: "Inicio", url: "/" ,img:"./assets/images/logo 11 gag.png"},
               { name: "Agregar un Meme", url: "/add" },
               { name: "Mi usuario", url: "/user" },
             ]}
@@ -25,6 +26,7 @@ function App() {
           <Switch>
             <Route path="/add" component={AddPostScreen} />
             <Route path="/user" component={UserScreen} />
+            <Route path="/post" component={PostScreen} />
             <Route path="/" component={HomeScreen} />
           </Switch>
         </UserContext.Provider>
