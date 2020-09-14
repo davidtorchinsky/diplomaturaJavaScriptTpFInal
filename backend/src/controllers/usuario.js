@@ -105,20 +105,20 @@ function getUsuario(req, res) {
 }
 
 function getUsuarioById(req, res) {
-    console.log("entre a buscar un solo usuario");
-    Usuario.find({ _id: req.params.idUsuario }).exec(function(error, usuario) {
-        if (error) {
-            return res.status(400).json({
-                title: "Error bad request",
-                error: error,
-            });
-        }
+  console.log("entre a buscar un solo usuario");
+  Usuario.find({ _id: req.params.idUsuario }).exec(function (error, usuario) {
+    if (error) {
+      return res.status(400).json({
+        title: "Error bad request",
+        error: error,
+      });
+    }
 
-        res.status(200).json({
-            message: "Success",
-            obj: usuario,
-        });
+    res.status(200).json({
+      message: "Success",
+      obj: usuario,
     });
+  });
 }
 
 //login y logout
@@ -238,5 +238,5 @@ module.exports = {
   cargarUsuario,
   //eliminarUsuario,
   register,
+  getUsuarioById,
 };
-    getUsuarioById,
