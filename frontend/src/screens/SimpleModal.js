@@ -50,17 +50,18 @@ export default function SimpleModal({ abierto }) {
     setOpen(false);
   };
 
-  const handleClick = () => {
+  /* const handleClick = () => {
     console.log("password");
-  };
+  }; */
 
   const responseGoogle = (response) => {
     let atributes = {
       usrName: response.profileObj.givenName,
       usrSurName: response.profileObj.familyName,
       usrEmail: response.profileObj.email,
+      jwt: response.accessToken,
     };
-    //console.log(response);
+    console.log(response);
     handleClose();
     setUser(atributes);
   };
@@ -70,17 +71,18 @@ export default function SimpleModal({ abierto }) {
     setshowAccCreation(!showAccCreation);
   };
 
-  /* const handleClick = () => {
+  const handleClick = () => {
     console.log(password);
-    let datosUsuario= {
-      usr:usrName,
-      psw:password
-    }
-    fetch('http://example.com/movies.json', datosUsuario)
-    .then(function(response){
+    let datosUsuario = {
+      usr: usrName,
+      psw: password,
+    };
+    fetch("localhost:4000/usuario/login", datosUsuario).then(function (
+      response
+    ) {
       setUser(response);
-    })
-  }; */
+    });
+  };
 
   /*async const handleClick = () => {
     console.log(password);
@@ -111,7 +113,7 @@ export default function SimpleModal({ abierto }) {
           onChange={(event) => {
             setUsrName(event.target.value);
           }}
-          label="Usuario"
+          label="Email"
           className={classes.TextField}
         />
         <br />
