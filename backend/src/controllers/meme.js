@@ -122,7 +122,7 @@ function upVotes(req, res) {
             meme[0].save().then(
                 function(meme) {
                     res.status(201).json({
-                        message: "Comentario Cargado al meme",
+                        message: "Voto Cargado al meme",
                         obj: meme,
                     });
                 },
@@ -134,9 +134,35 @@ function upVotes(req, res) {
                 }
             );
         } else {
-            return res.status(200).json({
-                message: "El usuario ya ha votado",
-            });
+            if (
+                meme[0].downvotes.indexOf(req.params.emailUsuario) != -1 &&
+                meme[0].upvotes.indexOf(req.params.emailUsuario) === -1
+            ) {
+                meme[0].upvotes.push(req.params.emailUsuario);
+
+                meme[0].downvotes.splice(
+                    meme[0].downvotes.indexOf(req.params.emailUsuario),
+                    1
+                );
+                meme[0].save().then(
+                    function(meme) {
+                        res.status(201).json({
+                            message: "Voto Cargado al meme",
+                            obj: meme,
+                        });
+                    },
+                    function(err) {
+                        return res.status(400).json({
+                            title: "Error al guardar el meme",
+                            error: err,
+                        });
+                    }
+                );
+            } else {
+                return res.status(200).json({
+                    message: "El usuario ya ha votado",
+                });
+            }
         }
     });
 }
@@ -174,7 +200,7 @@ function downVotes(req, res) {
             meme[0].save().then(
                 function(meme) {
                     res.status(201).json({
-                        message: "Comentario Cargado al meme",
+                        message: "Voto Cargado al meme",
                         obj: meme,
                     });
                 },
@@ -186,9 +212,34 @@ function downVotes(req, res) {
                 }
             );
         } else {
-            return res.status(200).json({
-                message: "El usuario ya ha votado",
-            });
+            if (
+                meme[0].upvotes.indexOf(req.params.emailUsuario) != -1 &&
+                meme[0].downvotes.indexOf(req.params.emailUsuario) === -1
+            ) {
+                meme[0].downvotes.push(req.params.emailUsuario);
+                meme[0].upvotes.splice(
+                    meme[0].downvotes.indexOf(req.params.emailUsuario),
+                    1
+                );
+                meme[0].save().then(
+                    function(meme) {
+                        res.status(201).json({
+                            message: "Voto Cargado al meme",
+                            obj: meme,
+                        });
+                    },
+                    function(err) {
+                        return res.status(400).json({
+                            title: "Error al guardar el meme",
+                            error: err,
+                        });
+                    }
+                );
+            } else {
+                return res.status(200).json({
+                    message: "El usuario ya ha votado",
+                });
+            }
         }
     });
 }
