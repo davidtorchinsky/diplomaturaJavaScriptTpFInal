@@ -9,6 +9,7 @@ import bcrypt from "bcrypt";
 import User from "./Models/usuario";
 import authRoutes from "./routes/auth";
 import Usuario from "./Models/usuario";
+import cloudinary from "cloudinary";
 
 const LocalStrategy = require("passport-local").Strategy;
 const JwtStrategy = require("passport-jwt").Strategy;
@@ -63,6 +64,8 @@ passport.use(
         if (!data) {
           console.log("retorna false jwt");
           done(null, false);
+        } else if (jwt_payload.expire <= Date.now()) {
+          return done("Token Expirado", null);
         } else {
           console.log("Retorna data:" + data);
           done(null, data);
@@ -127,6 +130,17 @@ passport.serializeUser(function (user, done) {
 passport.deserializeUser(function (user, done) {
   done(null, user);
 });
+
+// Cloudinary
+// Ver en https://cloudinary.com//documentation/node_integration
+// UPload Widget https://cloudinary.com//documentation/node_image_and_video_upload
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_KEY,
+  api_secret: process.env.CLOUD_SECRET,
+});
+
 //middlewares
 app.use(cors());
 app.use(express.json());

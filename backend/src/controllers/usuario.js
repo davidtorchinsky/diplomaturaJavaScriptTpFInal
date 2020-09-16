@@ -224,7 +224,8 @@ function cargarUsuario(req, res) {
 }
 
 function getLogout(req, res) {
-  res.send("Logout");
+  req.logout();
+  res.redirect("/");
 }
 
 // EXPORT
