@@ -5,6 +5,7 @@ import { Button, TextField } from "@material-ui/core";
 import { GoogleLogin } from "react-google-login";
 import { UserContext } from "../UserContext";
 import CreateAccountModal from "./CreateAccountModal";
+import { BounceLoader } from "react-spinners";
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -41,6 +42,7 @@ export default function SimpleModal({ abierto }) {
   const [showAccCreation, setshowAccCreation] = useState(false);
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(abierto);
+  const [loading, setLoading] = useState(false);
 
   const handleOpen = () => {
     setOpen(true);
@@ -64,6 +66,7 @@ export default function SimpleModal({ abierto }) {
     console.log(response);
     handleClose();
     setUser(atributes);
+    localStorage.setItem("jwt", JSON.stringify(response.accessToken));
   };
 
   const handleAccountCreation = () => {
@@ -77,23 +80,31 @@ export default function SimpleModal({ abierto }) {
       usr: usrName,
       psw: password,
     };
+    setLoading(true);
     fetch("localhost:4000/usuario/login", datosUsuario).then(function (
       response
     ) {
       setUser(response);
+      localStorage.setItem("jwt", JSON.stringify(response));
     });
+    setLoading(false);
   };
-
-  /*async const handleClick = () => {
-    console.log(password);
-    let datosUsuario= {
-      usr:usrName,
-      psw:password
-    }
-    const user = await fetch('http://example.com/movies.json', datosUsuario);
-    setUser(user);
-    })
+  /* const handleClick = () => {
+    setLoading(true);
   }; */
+
+  /*  const handleClick = async () => {
+  try {
+    let datosUsuario = {
+      usr: usrName,
+      psw: password,
+    };
+    const user = await fetch("localhost:4000/usuario/login", datosUsuario)
+    .then()
+  } catch (e) {
+    
+  }
+  };  */
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
@@ -158,7 +169,7 @@ export default function SimpleModal({ abierto }) {
   );
 
   return (
-    <div>
+    <div className={loading ? null : loading}>
       <Modal
         open={open}
         onClose={handleClose}
@@ -168,6 +179,7 @@ export default function SimpleModal({ abierto }) {
         {body}
       </Modal>
       {showAccCreation && <CreateAccountModal abierto={true} />}
+      {loading && <BounceLoader size={24} color="red " />}
     </div>
   );
 }

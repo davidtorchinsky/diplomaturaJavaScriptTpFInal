@@ -54,22 +54,24 @@ export default function CreateAccountModal({ abierto }) {
     console.log("password");
   };
 
-  const submit = () => {
+  /*  const submit = () => {
     handleClose();
     console.log("falta implementar");
-  };
-  /* const submit = () => {
-    handleClose();
-    let datosUsuario= {
-        usr:usrName,
-        psw:password
-      }
-      fetch('http://example.com/movies.json', datosUsuario)
-      .then(function(response){
-        cambiar el estate del usuario
-        setUser(response);
-      })
   }; */
+  const submit = () => {
+    handleClose();
+    let datosUsuario = {
+      mail: email,
+      logo: null,
+      psw: password,
+      usr: usrName,
+    };
+    fetch("localhost:4000/usuario/register", datosUsuario).then(function (
+      response
+    ) {
+      setUser(response);
+    });
+  };
 
   const body = (
     <div style={modalStyle} className={classes.paper}>

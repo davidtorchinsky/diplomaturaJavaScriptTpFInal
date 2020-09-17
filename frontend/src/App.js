@@ -16,13 +16,29 @@ function App() {
     <Router>
       <div className="App">
         <UserContext.Provider value={{ user, setUser }}>
-          <NavbarComponent
-            items={[
-              { name: "Inicio", url: "/" ,img:"./assets/images/logo 11 gag.png"},
-              { name: "Agregar un Meme", url: "/add" },
-              { name: "Mi usuario", url: "/user" },
-            ]}
-          />
+          {user ? (
+            <NavbarComponent
+              items={[
+                {
+                  name: "Inicio",
+                  url: "/",
+                  img: "./assets/images/logo 11 gag.png",
+                },
+                { name: "Agregar un Meme", url: "/add" },
+                { name: "Mi usuario", url: "/user" },
+              ]}
+            />
+          ) : (
+            <NavbarComponent
+              items={[
+                {
+                  name: "Inicio",
+                  url: "/",
+                  img: "./assets/images/logo 11 gag.png",
+                },
+              ]}
+            />
+          )}
           <Switch>
             <Route path="/add" component={AddPostScreen} />
             <Route path="/user" component={UserScreen} />
