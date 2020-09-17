@@ -7,10 +7,14 @@ import memeRoutes from "./routes/meme";
 import passport from "passport";
 import bcrypt from "bcrypt";
 import User from "./Models/usuario";
+import authRoutes from "./routes/auth";
+import Usuario from "./Models/usuario";
+import cloudinary from "cloudinary";
 
 const LocalStrategy = require("passport-local").Strategy;
 const JwtStrategy = require("passport-jwt").Strategy;
 const ExtractJwt = require("passport-jwt").ExtractJwt;
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
 // Inicializo
 const app = express();
@@ -27,18 +31,10 @@ passport.use(
     },
     (mail, password, done) => {
       console.log("Estrategia Local");
-      console.log("mail enviado " + mail);
-      console.log("pass enviado " + password);
+      // console.log("mail enviado " + mail);
+      // console.log("pass enviado " + password);
       User.findOne({ mail: mail })
         .then((data) => {
-          //console.log("data " + data);
-          //console.log(
-          //  "comparar hash " +
-          //    bcrypt.hashSync(
-          //      req.body.password,
-          //      parseInt(process.env.BCRYPT_ROUNDS)
-          //    )
-          //);
           if (!data) {
             console.log("No Data");
             return done(null, false);
@@ -67,15 +63,84 @@ passport.use(
       .then((data) => {
         if (!data) {
           console.log("retorna false jwt");
-          return done(null, false);
+          done(null, false);
+        } else if (jwt_payload.expire <= Date.now()) {
+          return done("Token Expirado", null);
         } else {
           console.log("Retorna data:" + data);
-          return done(null, data);
+          done(null, data);
         }
       })
       .catch((err) => done(err, null));
   })
 );
+
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.Google_ClientId,
+      clientSecret: process.env.Google_ClientSecret,
+      callbackURL: "http://localhost:4000/auth/google/callback",
+      session: false,
+      scope: ["email"],
+    },
+    async function (req, accessToken, refreshToken, profile, done) {
+      console.log("Estrategia Google");
+      console.log("profile " + JSON.stringify(profile));
+      console.log("profile.email 2 " + profile.emails[0].value);
+
+      const usuarioEncontrado = await User.find(
+        { mail: profile.emails[0].value },
+        function (err, usr) {
+          // Si encuentra usuario o error lo devuelve
+          console.log("err " + err);
+          console.log("usr " + usr[0].mail);
+          if (err || usr[0].mail) {
+            console.log("devuelve error o usuario encontrado");
+            return done(err, usr);
+          }
+        }
+      ).catch((err) => {
+        return err;
+      });
+      if (usuarioEncontrado) {
+        console.log("usuario Encontrado " + usuarioEncontrado);
+        return done(false, usuarioEncontrado);
+      } else {
+        //Si no encuentra el usuario, lo crea y lo devuelve.
+        console.log("profile.email " + profile.email);
+        const nuevoUser = new User({
+          mail: profile.emails[0].value,
+          password: null,
+        });
+        const usrCreado = await nuevoUser.save().catch((err) => {
+          return err;
+        });
+        console.log("usuario nuevo " + usrCreado);
+        return done(false, usrCreado);
+      }
+    }
+  )
+);
+
+passport.serializeUser(function (user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function (user, done) {
+  done(null, user);
+});
+
+// Cloudinary
+// Ver en https://cloudinary.com//documentation/node_integration
+// UPload Widget https://cloudinary.com//documentation/node_image_and_video_upload
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_KEY,
+  api_secret: process.env.CLOUD_SECRET,
+});
+
 //middlewares
 app.use(cors());
 app.use(express.json());
@@ -85,10 +150,6 @@ app.use(passport.initialize());
 app.use("/comentario", comentarioRoutes);
 app.use("/usuario", usuarioRoutes);
 app.use("/meme", memeRoutes);
-app.use(
-  "/auth",
-  passport.authenticate("jwt", { session: false }),
-  usuarioRoutes
-);
+app.use("/auth", authRoutes); // passport.authenticate("jwt", { session: false }), authRoutes);
 
 module.exports = app;

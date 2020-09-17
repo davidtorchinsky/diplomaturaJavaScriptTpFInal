@@ -20,15 +20,6 @@ router.get("/id/:idUsuario", UsuarioController.getUsuarioById);
 //router.get("/login", UsuarioController.getLogin);
 router.get("/logout", UsuarioController.getLogout);
 
-// Ruta segura para probar JWT
-router.get("/profile", (req, res) => {
-  console.log(req);
-  res.json({
-    message: "Ruta segura OK",
-    mail: req.user.mail,
-  });
-});
-
 //router.get("/:login", UsuarioController.getLogin);
 //router.get("/:logout", UsuarioController.getLogout);
 

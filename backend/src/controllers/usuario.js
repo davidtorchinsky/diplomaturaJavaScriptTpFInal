@@ -105,20 +105,20 @@ function getUsuario(req, res) {
 }
 
 function getUsuarioById(req, res) {
-    console.log("entre a buscar un solo usuario");
-    Usuario.find({ _id: req.params.idUsuario }).exec(function(error, usuario) {
-        if (error) {
-            return res.status(400).json({
-                title: "Error bad request",
-                error: error,
-            });
-        }
+  console.log("entre a buscar un solo usuario");
+  Usuario.find({ _id: req.params.idUsuario }).exec(function (error, usuario) {
+    if (error) {
+      return res.status(400).json({
+        title: "Error bad request",
+        error: error,
+      });
+    }
 
-        res.status(200).json({
-            message: "Success",
-            obj: usuario,
-        });
+    res.status(200).json({
+      message: "Success",
+      obj: usuario,
     });
+  });
 }
 
 //login y logout
@@ -224,19 +224,20 @@ function cargarUsuario(req, res) {
 }
 
 function getLogout(req, res) {
-    res.send("Logout");
+  req.logout();
+  res.redirect("/");
 }
 
 // EXPORT
 module.exports = {
-    getUsuarios,
-    getUsuario,
-    getLogin,
-    getLogout,
-    //editarUsuario,
-    asignarMeme,
-    getUsuarioById,
-    cargarUsuario,
-    //eliminarUsuario,
-    register,
+  getUsuarios,
+  getUsuario,
+  getLogin,
+  getLogout,
+  //editarUsuario,
+  asignarMeme,
+  cargarUsuario,
+  //eliminarUsuario,
+  register,
+  getUsuarioById,
 };
