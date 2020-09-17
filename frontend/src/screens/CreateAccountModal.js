@@ -66,11 +66,11 @@ export default function CreateAccountModal({ abierto }) {
       psw: password,
       usr: usrName,
     };
-    fetch("localhost:4000/usuario/register", datosUsuario).then(function (
-      response
-    ) {
-      setUser(response);
-    });
+    fetch("http://localhost:4000/usuario/register", datosUsuario).then(
+      function (response) {
+        setUser(response);
+      }
+    );
   };
 
   const body = (

@@ -56,17 +56,33 @@ export default function SimpleModal({ abierto }) {
     console.log("password");
   }; */
 
-  const responseGoogle = (response) => {
+  /* const responseGoogle = (response) => {
     let atributes = {
-      usrName: response.profileObj.givenName,
+      usr: response.profileObj.givenName,
       usrSurName: response.profileObj.familyName,
       usrEmail: response.profileObj.email,
       jwt: response.accessToken,
     };
-    console.log(response);
+    //console.log(response);
+    fetch("localhost:4000/usuario/login", atributes).then(function (
+      response
+    ) {
+      !response ? fetch("localhost:4000/usuario/register", atributes)
+    });
+    
     handleClose();
     setUser(atributes);
     localStorage.setItem("jwt", JSON.stringify(response.accessToken));
+  }; */
+  const responseGoogle = (response) => {
+    //console.log(response);
+    setLoading(true);
+    fetch("http://localhost:4000/auth/google/").then(function (response) {
+      setUser(response.data);
+      localStorage.setItem("jwt", JSON.stringify(response.data.token));
+    });
+    setLoading(false);
+    handleClose();
   };
 
   const handleAccountCreation = () => {
@@ -81,7 +97,7 @@ export default function SimpleModal({ abierto }) {
       psw: password,
     };
     setLoading(true);
-    fetch("localhost:4000/usuario/login", datosUsuario).then(function (
+    fetch("http://localhost:4000/usuario/login", datosUsuario).then(function (
       response
     ) {
       setUser(response);
@@ -147,13 +163,16 @@ export default function SimpleModal({ abierto }) {
         </Button>
         <br />
         <br />
-        <GoogleLogin
+        {/*  <GoogleLogin
           clientId="943399630223-b57ctuqusfj911u63n802eupdr34alei.apps.googleusercontent.com"
           buttonText="Login"
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
           cookiePolicy={"single_host_origin"}
-        />
+        /> */}
+        <Button type="submit" onClick={responseGoogle}>
+          GoogleLogin
+        </Button>
         <br />
         <br />
         <br />
@@ -169,7 +188,7 @@ export default function SimpleModal({ abierto }) {
   );
 
   return (
-    <div className={loading ? null : loading}>
+    <div className={loading ? "loadingEffect" : ""}>
       <Modal
         open={open}
         onClose={handleClose}

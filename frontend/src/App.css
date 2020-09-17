@@ -45,7 +45,7 @@
   top: 50%;
 }
 
-.loading {
+.loadingEffect {
   -webkit-filter: blur(4px);
   -moz-filter: blur(4px);
   -ms-filter: blur(4px);
