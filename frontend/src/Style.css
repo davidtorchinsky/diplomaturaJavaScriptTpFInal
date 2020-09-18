@@ -149,6 +149,7 @@ li:first-child {
 
 .positionFixed {
 	position: fixed;
+	width: 30%;
 }
 
 .logoHead{

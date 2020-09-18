@@ -33,7 +33,7 @@ export default function NavbarComponent(props) {
   if (props.items) {
     return (
       <div className={classes.root}>
-        <AppBar position="static">
+        <AppBar position="fixed">
           <Toolbar>
             {props.items.map((elem) => {
               return (

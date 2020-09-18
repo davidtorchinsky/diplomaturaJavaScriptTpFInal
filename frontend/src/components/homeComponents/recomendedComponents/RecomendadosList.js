@@ -5,15 +5,17 @@ export function RecomendadosList({ recomendados }) {
 	if (recomendados) {
 		console.log(recomendados);
 		return (
-			<ul>
-				{recomendados.map((recomendado) => {
-					return (
-						<li>
-							<Recomendado recomendado={recomendado} />
-						</li>
-					);
-				})}
-			</ul>
+			<div className = 'positionFixed'>
+				<ul>
+					{recomendados.map((recomendado) => {
+						return (
+							<li>
+								<Recomendado recomendado={recomendado} />
+							</li>
+						);
+					})}
+				</ul>
+			</div>
 		);
 	} else {
 		return (
