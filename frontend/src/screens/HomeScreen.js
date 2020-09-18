@@ -8,25 +8,46 @@ import { RecomendadosList } from '../components/homeComponents/recomendedCompone
 import { Hidden } from '@material-ui/core';
 
 export const HomeScreen = (props) => {
-	let posts = getAllPost();
+	//let posts;
 	let categoriaClick = props.location.state ? props.location.state.item : 'All';
-	console.log('categoria: ', categoriaClick);
-
-	//const [ categoriaClick, setCategoriaClick ] = useState(props.location.state.item);
-	const [postsAMostrar, setPostsAMostrar] = useState(posts);
+	
+	//const [categoriaClick, setCategoriaClick] = useState('All');
+	const [posts, setPosts] = useState([]);
+	const [postsAMostrar, setPostsAMostrar] = useState([]);
+	const [isLoaded, setIsLoaded] = useState(false);
 	const [widthChange, setWidthChange] = useState(false);
 	const [isMobile, setisMobile] = useState(false);
 
 	useEffect(
 		() => {
-			let filterArray = posts.filter((post) => {
-				return categoriaClick == 'All' || categoriaClick == post.categoria;
-			});
-			setPostsAMostrar(filterArray);
+				console.log("ENTRO");
+				console.log(posts);
+				let filterArray = posts.filter((post) => {
+					console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+					console.log(categoriaClick);
+					console.log(post.categoria);
+					console.log("CCCCCCCCCCCCCCCCCCCCCCCCCCC");
+					console.log(categoriaClick == 'All');
+					return categoriaClick == 'All' || categoriaClick == post.categoria;
+				});
+				console.log(filterArray);
+				setPostsAMostrar(filterArray);
+			
 		},
 		[categoriaClick]
 	);
-
+	useEffect(
+		async () => {
+			let a = await getAllPost();
+			setPosts(a);
+			setPostsAMostrar(a);
+			setIsLoaded(true);
+			console.log("ABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+			console.log(a);
+			console.log(posts);
+		},
+		[]
+	);
 	return (
 		<div className="homeContainer">
 			<Grid container spacing={0}>

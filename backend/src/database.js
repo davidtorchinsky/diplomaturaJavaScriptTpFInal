@@ -1,13 +1,23 @@
+// Llamo a dotenv para que me cargue las variables locales cargadas en el archivo .env
+// de la raiz
+//require("dotenv").config();
+import {} from "dotenv/config";
+
 //hago la conexion a la bd
-import { mongoo } from "mongoose";
-const mongoose = mongoo;
-const URI = process.env.MONGODB_URI ?
-    process.env.MONGODB_URI :
-    "mongodb://localhost/databasetest";
-mongoose.conect( /*URI*/ );
+const mongoose = require("mongoose");
 
-const conection = mongoose.connection();
-
+console.log("Mongo URI en .env" + process.env.MONGODB_URI);
+console.log("Google ID : " + process.env.Google_ClientId);
+const URI = process.env.MONGODB_URI;
+//  ? process.env.MONGODB_URI
+//  : "mongodb://localhost/11gag";
+//lo que necesita mongoose para conectarse
+mongoose.connect(URI, {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useUnifiedTopology: true,
+});
+const connection = mongoose.connection;
 connection.once("open", () => {
-    console.log("DB conected");
+  console.log("DB conected");
 });

@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 export const PostComponent = ({ post }) => {
-	let votos = post.upVotes.length - post.downVotes.length;
+	let votos = post.upvotes.length - post.downvotes.length;
 	let history = useHistory();
 	const classes = useStyles;
 	const [ votes, setVotes ] = useState(votos);
