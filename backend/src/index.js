@@ -1,14 +1,13 @@
 //arranco el servidor
-import dotenv from "dotenv";
-import app from "./app";
-import {} from "dotenv/config";
-//como no exporto nada no lo importo
-require("./database");
-
+import { dotEnv } from "dotenv";
+import { appe } from "./app";
+import db from "./database";
+const dotenv = dotEnv;
 dotenv.config();
+const app = appe;
 
 async function main() {
-  await app.listen(app.get("port"));
-  console.log("Server on port", app.get("port"));
+    await app.listen(app.get("port"));
+    console.log("Server on port ", app.get("port"));
 }
 main();

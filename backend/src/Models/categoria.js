@@ -2,16 +2,15 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
-//Esquema Usuario
-var UsuarioSchema = Schema({
-    mail: {
+//Esquema Categoria
+var CategoriaSchema = Schema({
+    nombre: {
         type: String,
         unique: true,
     },
-    password: String,
-
+    descripcion: String,
     //ver esta parte
-    logo: url,
+    logo: String,
 
     //Relacion con Post
     post: [{
@@ -19,6 +18,6 @@ var UsuarioSchema = Schema({
         ref: "Post",
     }, ],
 });
-var Usuario = mongoose.model("Usuario", UsuarioSchema);
+var Categoria = mongoose.model("Categoria", CategoriaSchema);
 
-module.exports = Usuario;
+module.exports = Categoria;
