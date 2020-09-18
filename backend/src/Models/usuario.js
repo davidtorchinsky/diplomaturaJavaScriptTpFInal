@@ -4,20 +4,29 @@ var Schema = mongoose.Schema;
 
 //Esquema Usuario
 var UsuarioSchema = Schema({
-    mail: {
-        type: String,
-        unique: true,
-    },
-    password: String,
+  mail: {
+    type: String,
+    unique: true,
+  },
+  password: String,
+  //ver esta parte
+  logoUrl: String,
 
-    //ver esta parte
-    logo: url,
+  //Relacion con Meme
+  //meme: [
+  //  {
+  //    type: Schema.Types.ObjectId,
+  //    ref: "Meme",
+  //  },
+  //],
 
-    //Relacion con Post
-    post: [{
-        type: Schema.Types.ObjectId,
-        ref: "Post",
-    }, ],
+  //Relacion con comentarios
+  //comentarios: [
+  //  {
+  //    type: Schema.Types.ObjectId,
+  //    ref: "Comentario",
+  //  },
+  //],
 });
 var Usuario = mongoose.model("Usuario", UsuarioSchema);
 
