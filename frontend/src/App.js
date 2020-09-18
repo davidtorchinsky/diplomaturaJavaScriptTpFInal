@@ -11,34 +11,19 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./Style.css";
 
 function App() {
-  const [user, setUser] = useState(null);
+  
+  const [userState, setUserState] = useState(false);
   return (
     <Router>
       <div className="App">
-        <UserContext.Provider value={{ user, setUser }}>
-          {user ? (
-            <NavbarComponent
-              items={[
-                {
-                  name: "Inicio",
-                  url: "/",
-                  img: "./assets/images/logo 11 gag.png",
-                },
-                { name: "Agregar un Meme", url: "/add" },
-                { name: "Mi usuario", url: "/user" },
-              ]}
-            />
-          ) : (
-            <NavbarComponent
-              items={[
-                {
-                  name: "Inicio",
-                  url: "/",
-                  img: "./assets/images/logo 11 gag.png",
-                },
-              ]}
-            />
-          )}
+        <UserContext.Provider value={{ userState, setUserState }}>
+          <NavbarComponent
+            items={[
+              { name: "Inicio", url: "/" ,img:"./assets/images/logo 11 gag.png"},
+              { name: "Agregar un Meme", url: "/add" },
+              { name: "Mi usuario", url: "/user" },
+            ]}
+          />
           <Switch>
             <Route path="/add" component={AddPostScreen} />
             <Route path="/user" component={UserScreen} />
